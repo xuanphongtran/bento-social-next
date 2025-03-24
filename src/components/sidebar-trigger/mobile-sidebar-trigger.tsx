@@ -1,25 +1,25 @@
-import React from 'react';
+import React from 'react'
 
-import MobileSidebar from '@/layouts/mobile-sidebar';
+import MobileSidebar from '@/layouts/mobile-sidebar'
 
 //----------------------------------------------------------------------
 
 type Props = {
-  className?: string;
-  children?: React.ReactNode;
-  onClick?: () => void;
-};
+  className?: string
+  children?: React.ReactNode
+  onClick?: () => void
+}
 
 const MobileSidebarTrigger = ({ children, className }: Props) => {
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
 
   const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+    setIsSidebarOpen(false)
+  }
 
   const openSidebar = () => {
-    setIsSidebarOpen(true);
-  };
+    setIsSidebarOpen(true)
+  }
 
   return (
     <>
@@ -31,7 +31,7 @@ const MobileSidebarTrigger = ({ children, className }: Props) => {
         onClose={closeSidebar}
       />
     </>
-  );
-};
+  )
+}
 
-export default MobileSidebarTrigger;
+export default MobileSidebarTrigger

@@ -1,14 +1,14 @@
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import React from 'react'
 
-import useBreakPoint from '@/hooks/use-breakpoint';
+import useBreakPoint from '@/hooks/use-breakpoint'
 
-import { useAuth } from '@/context/auth-context';
-import { paths } from '@/routes/paths';
+import { useAuth } from '@/context/auth-context'
+import { paths } from '@/routes/paths'
 
-import { Avatar } from '@/components/avatar';
-import { Button } from '@/components/button';
+import { Avatar } from '@/components/avatar'
+import { Button } from '@/components/button'
 import {
   AddIcon,
   ChevronRight,
@@ -17,73 +17,73 @@ import {
   Logo,
   MoreIcon,
   SettingSlider,
-} from '@/components/icons';
-import { NewPostModal } from '@/components/new-post';
-import { Typography } from '@/components/typography';
+} from '@/components/icons'
+import { NewPostModal } from '@/components/new-post'
+import { Typography } from '@/components/typography'
 
-import { useUserProfile } from '@/context/user-context';
-import useUnreadNoti from '@/hooks/use-unread-noti';
+import { useUserProfile } from '@/context/user-context'
+import useUnreadNoti from '@/hooks/use-unread-noti'
 
-import { NAVIGATION_ITEMS } from './navigation-items';
-import NavigationBar from './navigationbar';
+import { NAVIGATION_ITEMS } from './navigation-items'
+import NavigationBar from './navigationbar'
 
-import { USER_AVATAR_PLACEHOLDER } from '@/constant/contants';
-import { cn } from '@/lib/utils';
+import { USER_AVATAR_PLACEHOLDER } from '@/constant/contants'
+import { cn } from '@/lib/utils'
 
 //-----------------------------------------------------------------------------------------------
 
 type SidebarProps = {
-  className?: string;
-};
+  className?: string
+}
 
 export default function Sidebar({ className }: SidebarProps) {
-  const { breakpoint } = useBreakPoint();
-  const unreadCount = useUnreadNoti();
-  const [isExpanded, setIsExpanded] = React.useState(false);
-  const [isCreatePost, setIsCreatePost] = React.useState(false);
+  const { breakpoint } = useBreakPoint()
+  const unreadCount = useUnreadNoti()
+  const [isExpanded, setIsExpanded] = React.useState(false)
+  const [isCreatePost, setIsCreatePost] = React.useState(false)
 
   const navItems = NAVIGATION_ITEMS.map((item) =>
     item.title === 'Notifications'
       ? { ...item, update: { status: true, count: unreadCount } }
       : item
-  );
+  )
 
-  const { userProfile: user } = useUserProfile();
+  const { userProfile: user } = useUserProfile()
 
   const currentUser = user && {
     fullname: `${user.firstName} ${user.lastName}`,
     nickname: user.username,
     avatar: user.avatar || USER_AVATAR_PLACEHOLDER,
     isActive: user.status === 'active',
-  };
+  }
 
   React.useEffect(() => {
     setIsExpanded(
       !(breakpoint === 'sm' || breakpoint === 'md' || breakpoint === 'lg')
-    );
-  }, [breakpoint]);
+    )
+  }, [breakpoint])
 
   React.useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isCreatePost) {
-        setIsCreatePost(false);
+        setIsCreatePost(false)
       }
-    };
+    }
 
-    document.addEventListener('keydown', handleEsc);
+    document.addEventListener('keydown', handleEsc)
 
     return () => {
-      document.removeEventListener('keydown', handleEsc);
-    };
-  }, [isCreatePost]);
+      document.removeEventListener('keydown', handleEsc)
+    }
+  }, [isCreatePost])
 
   const toggleSidebar = () => {
-    setIsExpanded(!isExpanded);
-  };
+    setIsExpanded(!isExpanded)
+  }
 
   const handleCreatePost = () => {
-    setIsCreatePost(!isCreatePost);
-  };
+    setIsCreatePost(!isCreatePost)
+  }
 
   return (
     <aside
@@ -142,7 +142,7 @@ export default function Sidebar({ className }: SidebarProps) {
         <Button
           className={`${isExpanded ? 'px-6 py-3 w-full' : 'size-[44px]'}`}
           onClick={() => {
-            handleCreatePost();
+            handleCreatePost()
           }}
           child={
             isExpanded ? (
@@ -168,33 +168,33 @@ export default function Sidebar({ className }: SidebarProps) {
 
       {isCreatePost && <NewPostModal onBack={handleCreatePost} />}
     </aside>
-  );
+  )
 }
 
 interface User {
-  fullname: string;
-  nickname: string;
-  avatar: string;
-  isActive: boolean;
+  fullname: string
+  nickname: string
+  avatar: string
+  isActive: boolean
 }
 
 interface UserSectionProps {
-  isExpanded: boolean;
-  user: User;
+  isExpanded: boolean
+  user: User
 }
 
 export function UserSection({ isExpanded, user }: UserSectionProps) {
-  const [isMoreOptions, setIsMoreOptions] = React.useState(false);
-  const auth = useAuth();
-  const router = useRouter();
+  const [isMoreOptions, setIsMoreOptions] = React.useState(false)
+  const auth = useAuth()
+  const router = useRouter()
 
   const toggleMoreOptions = () => {
-    setIsMoreOptions(!isMoreOptions);
-  };
+    setIsMoreOptions(!isMoreOptions)
+  }
 
   const handleLogout = () => {
-    auth.setToken(null);
-  };
+    auth.setToken(null)
+  }
 
   return (
     <>
@@ -251,5 +251,5 @@ export function UserSection({ isExpanded, user }: UserSectionProps) {
         <div className="fixed inset-0 z-10" onClick={toggleMoreOptions}></div>
       )}
     </>
-  );
+  )
 }

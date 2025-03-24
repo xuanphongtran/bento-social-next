@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 export default function Profile({ className }: { className?: string }) {
   return (
@@ -22,5 +22,5 @@ export default function Profile({ className }: { className?: string }) {
         />
       </g>
     </svg>
-  );
+  )
 }

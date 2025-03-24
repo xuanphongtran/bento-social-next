@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-const notificationsAction = z.enum(['liked', 'followed', 'replied']);
+const notificationsAction = z.enum(['liked', 'followed', 'replied'])
 
 export const notificationsSchema = z.object({
   id: z.string(),
@@ -11,6 +11,6 @@ export const notificationsSchema = z.object({
   isRead: z.boolean().nullable(),
   createdAt: z.date(),
   updatedAt: z.date(),
-});
+})
 
-export type Notification = z.infer<typeof notificationsSchema>;
+export type Notification = z.infer<typeof notificationsSchema>

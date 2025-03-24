@@ -1,7 +1,7 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-const chatRoomsType = z.enum(['direct', 'group']);
-const chatRoomsStatus = z.enum(['pending', 'active', 'deleted']);
+const chatRoomsType = z.enum(['direct', 'group'])
+const chatRoomsStatus = z.enum(['pending', 'active', 'deleted'])
 
 export const chatRoomsSchema = z.object({
   id: z.string(),
@@ -12,6 +12,6 @@ export const chatRoomsSchema = z.object({
   createdAt: z.date(),
   updatedAt: z.date(),
   deletedAt: z.date().nullable(),
-});
+})
 
-export type ChatRoom = z.infer<typeof chatRoomsSchema>;
+export type ChatRoom = z.infer<typeof chatRoomsSchema>

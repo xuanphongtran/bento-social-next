@@ -1,17 +1,17 @@
-'use client';
-import React, { useState } from 'react';
-import ToggleItem from './toggle-item';
-import { cn } from '@/lib/utils';
+'use client'
+import React, { useState } from 'react'
+import ToggleItem from './toggle-item'
+import { cn } from '@/lib/utils'
 
 interface ToggleItem {
-  key: string;
-  label: string;
+  key: string
+  label: string
 }
 
 interface ToggleGroupProps {
-  items: ToggleItem[];
-  className?: string;
-  onChange?: (key: string) => void;
+  items: ToggleItem[]
+  className?: string
+  onChange?: (key: string) => void
 }
 
 const ToggleGroup: React.FC<ToggleGroupProps> = ({
@@ -19,14 +19,14 @@ const ToggleGroup: React.FC<ToggleGroupProps> = ({
   className,
   onChange,
 }) => {
-  const [active, setActive] = useState(items[0].key);
+  const [active, setActive] = useState(items[0].key)
 
   const handleItemClick = (key: string) => {
-    setActive(key);
+    setActive(key)
     if (onChange) {
-      onChange(key);
+      onChange(key)
     }
-  };
+  }
 
   return (
     <div
@@ -45,7 +45,7 @@ const ToggleGroup: React.FC<ToggleGroupProps> = ({
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default ToggleGroup;
+export default ToggleGroup

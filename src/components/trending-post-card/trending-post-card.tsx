@@ -1,26 +1,26 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
-import { Typography } from '@/components/typography';
+import { Typography } from '@/components/typography'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
-import { IAuthor } from '@/interfaces/post';
-import { ITopic } from '@/interfaces/topic';
-import { relativeTime } from '@/utils/relative-time';
+import { IAuthor } from '@/interfaces/post'
+import { ITopic } from '@/interfaces/topic'
+import { relativeTime } from '@/utils/relative-time'
 
-import { Avatar } from '../avatar';
+import { Avatar } from '../avatar'
 
 //--------------------------------------------------------------------------------------------------------
 
 interface TrendingPostCardProps {
-  className?: string;
-  content: string;
-  image: string;
-  alt: string;
-  time: string;
-  author: IAuthor;
-  topic: ITopic;
+  className?: string
+  content: string
+  image: string
+  alt: string
+  time: string
+  author: IAuthor
+  topic: ITopic
 }
 
 export default function TrendingPostCard({
@@ -90,5 +90,5 @@ export default function TrendingPostCard({
         </div>
       </div>
     </Link>
-  );
+  )
 }

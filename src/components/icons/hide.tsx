@@ -13,5 +13,5 @@ export default function Hide() {
         fillOpacity="0.7"
       />
     </svg>
-  );
+  )
 }

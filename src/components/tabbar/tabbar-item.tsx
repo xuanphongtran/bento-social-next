@@ -1,9 +1,9 @@
-import { Typography } from '@/components/typography';
+import { Typography } from '@/components/typography'
 
 interface TabBarItemProps {
-  isActive: boolean;
-  label: string;
-  onClick: () => void;
+  isActive: boolean
+  label: string
+  onClick: () => void
 }
 
 const TabBarItem: React.FC<TabBarItemProps> = ({
@@ -25,7 +25,7 @@ const TabBarItem: React.FC<TabBarItemProps> = ({
         {label}
       </Typography>
     </button>
-  );
-};
+  )
+}
 
-export default TabBarItem;
+export default TabBarItem

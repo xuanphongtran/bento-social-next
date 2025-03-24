@@ -3,4 +3,4 @@ export {
   loginSchema,
   type RegisterData,
   registerSchema,
-} from './schema';
+} from './schema'

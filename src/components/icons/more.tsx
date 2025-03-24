@@ -1,6 +1,6 @@
 interface MoreProps {
-  onClick?: () => void;
-  className?: string;
+  onClick?: () => void
+  className?: string
 }
 
 export default function More({ onClick, className }: MoreProps) {
@@ -41,5 +41,5 @@ export default function More({ onClick, className }: MoreProps) {
         />
       </g>
     </svg>
-  );
+  )
 }

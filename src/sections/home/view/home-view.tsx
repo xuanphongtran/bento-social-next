@@ -1,73 +1,73 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+'use client'
 
-import React from 'react';
+import React from 'react'
 
-import { IPost } from '@/interfaces/post';
+import { IPost } from '@/interfaces/post'
 
-import { useUserProfile } from '@/context/user-context';
-import eventBus from '@/utils/event-emitter';
+import { useUserProfile } from '@/context/user-context'
+import eventBus from '@/utils/event-emitter'
 
-import { Avatar } from '@/components/avatar';
-import { Button } from '@/components/button';
-import { AddIcon } from '@/components/icons';
-import { SplashScreen } from '@/components/loading-screen';
-import { ComposerInput, NewPostModal } from '@/components/new-post';
-import { Post } from '@/components/post';
-import SearchInput from '@/components/search-input/search-input';
-import MobileSidebarTrigger from '@/components/sidebar-trigger/mobile-sidebar-trigger';
-import { usePost } from '@/context/post-context';
+import { Avatar } from '@/components/avatar'
+import { Button } from '@/components/button'
+import { AddIcon } from '@/components/icons'
+import { SplashScreen } from '@/components/loading-screen'
+import { ComposerInput, NewPostModal } from '@/components/new-post'
+import { Post } from '@/components/post'
+import SearchInput from '@/components/search-input/search-input'
+import MobileSidebarTrigger from '@/components/sidebar-trigger/mobile-sidebar-trigger'
+import { usePost } from '@/context/post-context'
 
-import { USER_AVATAR_PLACEHOLDER } from '@/constant';
+import { USER_AVATAR_PLACEHOLDER } from '@/constant'
 
 // ----------------------------------------------------------------------
 
 export default function HomeView() {
-  const { posts, isLoading, setFilter } = usePost();
-  const [searchStr, setSearchStr] = React.useState<string>('');
-  const [isSidebarShow, setIsSidebarShow] = React.useState<boolean>(false);
-  const [isCreatePost, setIsCreatePost] = React.useState<boolean>(false);
-  const [isDeleted, setIsDeleted] = React.useState<boolean>(false);
+  const { posts, isLoading, setFilter } = usePost()
+  const [searchStr, setSearchStr] = React.useState<string>('')
+  const [isSidebarShow, setIsSidebarShow] = React.useState<boolean>(false)
+  const [isCreatePost, setIsCreatePost] = React.useState<boolean>(false)
+  const [isDeleted, setIsDeleted] = React.useState<boolean>(false)
   const [openMoreOptionsId, setOpenMoreOptionsId] = React.useState<
     string | null
-  >(null);
+  >(null)
 
-  const { userProfile: user } = useUserProfile();
+  const { userProfile: user } = useUserProfile()
 
   React.useEffect(() => {
-    setFilter((prevFilter) => ({ ...prevFilter, str: searchStr }));
-  }, [searchStr, setFilter, isDeleted]);
+    setFilter((prevFilter) => ({ ...prevFilter, str: searchStr }))
+  }, [searchStr, setFilter, isDeleted])
 
   React.useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isCreatePost) {
-        setIsCreatePost(false);
+        setIsCreatePost(false)
       }
-    };
+    }
 
-    document.addEventListener('keydown', handleEsc);
+    document.addEventListener('keydown', handleEsc)
 
     return () => {
-      document.removeEventListener('keydown', handleEsc);
-    };
-  }, [isCreatePost]);
+      document.removeEventListener('keydown', handleEsc)
+    }
+  }, [isCreatePost])
 
-  if (isLoading || !user) return <SplashScreen />;
+  if (isLoading || !user) return <SplashScreen />
 
   const toggleSidebar = () => {
-    setIsSidebarShow(!isSidebarShow);
-    eventBus.emit('isShowSidebar', !isSidebarShow);
-  };
+    setIsSidebarShow(!isSidebarShow)
+    eventBus.emit('isShowSidebar', !isSidebarShow)
+  }
 
   const currentUser = user && {
     fullname: `${user.firstName} ${user.lastName}`,
     nickname: user.username,
     avatar: user.avatar || USER_AVATAR_PLACEHOLDER,
-  };
+  }
 
   const handleCreatePost = () => {
-    setIsCreatePost(!isCreatePost);
-  };
+    setIsCreatePost(!isCreatePost)
+  }
 
   return (
     <>
@@ -80,7 +80,7 @@ export default function HomeView() {
           />
           <Button
             onClick={() => {
-              handleCreatePost();
+              handleCreatePost()
             }}
             child={<AddIcon />}
             className="size-[44px] min-w-[44px]"
@@ -105,5 +105,5 @@ export default function HomeView() {
       </div>
       {isCreatePost && <NewPostModal onBack={handleCreatePost} />}
     </>
-  );
+  )
 }

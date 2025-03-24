@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 type Props = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 export default function QueryProvider({ children }: Props) {
   const queryClient = new QueryClient({
@@ -13,9 +13,9 @@ export default function QueryProvider({ children }: Props) {
         refetchOnWindowFocus: false, // default: true
       },
     },
-  });
+  })
 
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
+  )
 }

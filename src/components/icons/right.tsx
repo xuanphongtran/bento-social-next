@@ -16,5 +16,5 @@ export default function RightIcon() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

@@ -1,32 +1,32 @@
-import Image from 'next/image';
-import React from 'react';
-import { z } from 'zod';
+import Image from 'next/image'
+import React from 'react'
+import { z } from 'zod'
 
-import { updatePost } from '@/apis/post';
-import { getTopics } from '@/apis/topic';
-import { usePost } from '@/context/post-context';
-import { useUserProfile } from '@/context/user-context';
-import { IPost } from '@/interfaces/post';
-import { ITopic } from '@/interfaces/topic';
-import { type UpdatePost, updatePostSchema } from '@/schema/posts-schema';
+import { updatePost } from '@/apis/post'
+import { getTopics } from '@/apis/topic'
+import { usePost } from '@/context/post-context'
+import { useUserProfile } from '@/context/user-context'
+import { IPost } from '@/interfaces/post'
+import { ITopic } from '@/interfaces/topic'
+import { type UpdatePost, updatePostSchema } from '@/schema/posts-schema'
 
-import { Avatar } from '@/components/avatar';
-import { ArrowBackIcon } from '@/components/icons';
-import { CloseIcon } from '@/components/icons';
-import { UploadImgButton } from '@/components/new-post/post-control';
-import { Typography } from '@/components/typography';
+import { Avatar } from '@/components/avatar'
+import { ArrowBackIcon } from '@/components/icons'
+import { CloseIcon } from '@/components/icons'
+import { UploadImgButton } from '@/components/new-post/post-control'
+import { Typography } from '@/components/typography'
 
-import { Button } from '../button';
-import { Dropdown } from '../dropdown';
-import { DebouncedInput } from '../input';
-import { SplashScreen } from '../loading-screen';
+import { Button } from '../button'
+import { Dropdown } from '../dropdown'
+import { DebouncedInput } from '../input'
+import { SplashScreen } from '../loading-screen'
 
 //-------------------------------------------------------------------------
 
 interface IUpdatePostProps {
-  postId: string;
-  onClose?: () => void;
-  onUpdateSuccess?: (updatedPost: IPost) => void;
+  postId: string
+  onClose?: () => void
+  onUpdateSuccess?: (updatedPost: IPost) => void
 }
 
 export default function UpdatePost({
@@ -34,67 +34,67 @@ export default function UpdatePost({
   onClose,
   onUpdateSuccess,
 }: IUpdatePostProps) {
-  const [previewUrl, setPreviewUrl] = React.useState('');
-  const [uploadedImage, setUploadedImage] = React.useState('');
-  const [isUploading, setIsUploading] = React.useState(false);
-  const fileInputRef = React.useRef<HTMLInputElement | null>(null);
+  const [previewUrl, setPreviewUrl] = React.useState('')
+  const [uploadedImage, setUploadedImage] = React.useState('')
+  const [isUploading, setIsUploading] = React.useState(false)
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null)
 
-  const { userProfile } = useUserProfile();
-  const { posts, updatePostCtx } = usePost();
+  const { userProfile } = useUserProfile()
+  const { posts, updatePostCtx } = usePost()
 
-  const [selectedTopic, setSelectedTopic] = React.useState<string>('');
-  const [topics, setTopics] = React.useState<ITopic[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const [error, setError] = React.useState<string>('');
+  const [selectedTopic, setSelectedTopic] = React.useState<string>('')
+  const [topics, setTopics] = React.useState<ITopic[]>([])
+  const [loading, setLoading] = React.useState<boolean>(true)
+  const [error, setError] = React.useState<string>('')
 
-  const [content, setContent] = React.useState<string>('');
-  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
+  const [content, setContent] = React.useState<string>('')
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false)
 
   const post = React.useMemo(() => {
-    console.log(posts.find((p) => p.id === postId));
+    console.log(posts.find((p) => p.id === postId))
 
-    return posts.find((p) => p.id === postId);
-  }, [posts, postId]);
+    return posts.find((p) => p.id === postId)
+  }, [posts, postId])
 
   React.useEffect(() => {
     if (post) {
-      setContent(post.content);
-      setSelectedTopic(post.topic.id);
+      setContent(post.content)
+      setSelectedTopic(post.topic.id)
       if (post.image) {
-        setPreviewUrl(post.image);
-        setUploadedImage(post.image);
+        setPreviewUrl(post.image)
+        setUploadedImage(post.image)
       }
     }
-  }, [post]);
+  }, [post])
 
   React.useEffect(() => {
     getTopics()
       .then((response) => {
-        setTopics(response.data);
+        setTopics(response.data)
       })
       .catch((error) => {
-        console.error('Error fetching topics:', error);
-        setError('Failed to load topics.');
+        console.error('Error fetching topics:', error)
+        setError('Failed to load topics.')
       })
       .finally(() => {
-        setLoading(false);
-      });
+        setLoading(false)
+      })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const handleSubmit = async () => {
-    if (!post) return;
+    if (!post) return
 
     try {
-      setIsSubmitting(true);
+      setIsSubmitting(true)
 
       const postData: UpdatePost = {
         content: content.trim(),
         image: uploadedImage || '',
         topicId: selectedTopic,
-      };
+      }
 
-      const validatedData = updatePostSchema.parse(postData);
+      const validatedData = updatePostSchema.parse(postData)
 
       const optimisticPost: IPost = {
         ...post,
@@ -102,44 +102,44 @@ export default function UpdatePost({
         image: uploadedImage,
         topic: topics.find((topic) => topic.id === selectedTopic) || post.topic,
         updatedAt: new Date().toISOString(),
-      };
-
-      updatePostCtx(optimisticPost);
-      if (onUpdateSuccess) {
-        onUpdateSuccess(optimisticPost);
       }
 
-      await updatePost({ ...validatedData, id: post.id });
-
-      if (onClose) onClose();
-    } catch (error) {
-      updatePostCtx(post);
+      updatePostCtx(optimisticPost)
       if (onUpdateSuccess) {
-        onUpdateSuccess(post);
+        onUpdateSuccess(optimisticPost)
+      }
+
+      await updatePost({ ...validatedData, id: post.id })
+
+      if (onClose) onClose()
+    } catch (error) {
+      updatePostCtx(post)
+      if (onUpdateSuccess) {
+        onUpdateSuccess(post)
       }
 
       if (error instanceof z.ZodError) {
-        const errorMessage = error.errors.map((err) => err.message).join(', ');
-        console.log(`Validation error: ${errorMessage}`);
+        const errorMessage = error.errors.map((err) => err.message).join(', ')
+        console.log(`Validation error: ${errorMessage}`)
       } else {
-        console.log('Failed to update post. Please try again.');
+        console.log('Failed to update post. Please try again.')
       }
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   const handleRemoveImage = () => {
-    setPreviewUrl('');
-    setUploadedImage('');
+    setPreviewUrl('')
+    setUploadedImage('')
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = ''
     }
-  };
+  }
 
-  if (loading) return <SplashScreen />;
-  if (error) return <div>{error}</div>;
-  if (!post) return <div>Post not found</div>;
+  if (loading) return <SplashScreen />
+  if (error) return <div>{error}</div>
+  if (!post) return <div>Post not found</div>
 
   return (
     <div className="fixed z-9999 w-full h-full top-0 left-0 bg-[#444444] z-100 md:bg-[#12121299] shadow-stack">
@@ -252,5 +252,5 @@ export default function UpdatePost({
         </div>
       </div>
     </div>
-  );
+  )
 }

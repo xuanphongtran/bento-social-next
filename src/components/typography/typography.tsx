@@ -1,7 +1,7 @@
-import { HTMLAttributes } from 'react';
-import { tv, VariantProps } from 'tailwind-variants';
-import { cn } from '@/lib/utils';
-import { forwardRefWithAs } from '@/utils/render';
+import { HTMLAttributes } from 'react'
+import { tv, VariantProps } from 'tailwind-variants'
+import { cn } from '@/lib/utils'
+import { forwardRefWithAs } from '@/utils/render'
 
 // ----------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ const typographyVariants = tv({
   defaultVariants: {
     level: 'body',
   },
-});
+})
 
 const defaultVariantMapping: Record<
   NonNullable<VariantProps<typeof typographyVariants>['level']>,
@@ -65,7 +65,7 @@ const defaultVariantMapping: Record<
   basem: 'span',
   baser: 'span',
   title: 'h1',
-};
+}
 
 export interface TypographyProps
   extends Omit<HTMLAttributes<HTMLHeadingElement>, 'color'>,
@@ -75,9 +75,9 @@ export const Typography = forwardRefWithAs<
   'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'b' | 'em' | 'div',
   TypographyProps
 >((props, ref) => {
-  const { level = 'body', color, children, as, className, ...rest } = props;
+  const { level = 'body', color, children, as, className, ...rest } = props
 
-  const Tag = as ?? defaultVariantMapping[level ?? 'body'];
+  const Tag = as ?? defaultVariantMapping[level ?? 'body']
 
   return (
     <Tag
@@ -87,5 +87,5 @@ export const Typography = forwardRefWithAs<
     >
       {children}
     </Tag>
-  );
-});
+  )
+})

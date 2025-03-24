@@ -1,16 +1,16 @@
-import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
+import Link from 'next/link'
+import React from 'react'
+import Image from 'next/image'
 
-import { Typography } from '@/components/typography';
-import { Avatar } from '@/components/avatar';
+import { Typography } from '@/components/typography'
+import { Avatar } from '@/components/avatar'
 
-import { IPost } from '@/interfaces/post';
+import { IPost } from '@/interfaces/post'
 
 //---------------------------------------------------------------------------------------
 
 interface IExploreCardProps {
-  post: IPost;
+  post: IPost
 }
 
 export default function ExploreCard({ post }: IExploreCardProps) {
@@ -67,5 +67,5 @@ export default function ExploreCard({ post }: IExploreCardProps) {
         </Typography>
       </div>
     </Link>
-  );
+  )
 }

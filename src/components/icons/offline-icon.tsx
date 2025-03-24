@@ -96,7 +96,7 @@ const OfflineIcon = () => {
         </linearGradient>
       </defs>
     </svg>
-  );
-};
+  )
+}
 
-export default OfflineIcon;
+export default OfflineIcon

@@ -3,11 +3,11 @@ import React, {
   HTMLAttributes,
   useContext,
   useState,
-} from 'react';
+} from 'react'
 
-import { Typography } from '@/components/typography';
+import { Typography } from '@/components/typography'
 
-import { cn } from '@/lib';
+import { cn } from '@/lib'
 
 //-----------------------------------------------------------------------------------------------
 
@@ -18,57 +18,55 @@ export enum ThemeOption {
 }
 
 interface ThemeSelectContextProps {
-  activeTheme: ThemeOption;
-  setActiveTheme: (theme: ThemeOption) => void;
+  activeTheme: ThemeOption
+  setActiveTheme: (theme: ThemeOption) => void
 }
 
 const ThemeSelectContext = createContext<ThemeSelectContextProps | undefined>(
   undefined
-);
+)
 
 const useThemeSelectContext = () => {
-  const context = useContext(ThemeSelectContext);
+  const context = useContext(ThemeSelectContext)
   if (!context) {
     throw new Error(
       'useThemeSelectContext must be used within a ThemeSelectGroup'
-    );
+    )
   }
 
-  return context;
-};
+  return context
+}
 
-type ThemeSelectGroupProps = HTMLAttributes<HTMLDivElement>;
+type ThemeSelectGroupProps = HTMLAttributes<HTMLDivElement>
 
 const ThemeSelectGroup = ({
   children,
   className,
   ...props
 }: ThemeSelectGroupProps) => {
-  const [activeTheme, setActiveTheme] = useState<ThemeOption>(
-    ThemeOption.light
-  );
+  const [activeTheme, setActiveTheme] = useState<ThemeOption>(ThemeOption.light)
   return (
     <ThemeSelectContext.Provider value={{ activeTheme, setActiveTheme }}>
       <div {...props} className={cn('flex gap-5', className)}>
         {children}
       </div>
     </ThemeSelectContext.Provider>
-  );
-};
+  )
+}
 
 interface GroupItemProps extends HTMLAttributes<HTMLButtonElement> {
-  leading: React.ReactNode;
-  title: string;
-  value: ThemeOption;
+  leading: React.ReactNode
+  title: string
+  value: ThemeOption
 }
 
 const GroupItem = ({ leading, title, value }: GroupItemProps) => {
-  const { activeTheme, setActiveTheme } = useThemeSelectContext();
+  const { activeTheme, setActiveTheme } = useThemeSelectContext()
 
   const handleSetActiveTheme = () => {
-    setActiveTheme(value);
-  };
-  const isActive = activeTheme === value;
+    setActiveTheme(value)
+  }
+  const isActive = activeTheme === value
   return (
     <button
       onClick={handleSetActiveTheme}
@@ -86,9 +84,9 @@ const GroupItem = ({ leading, title, value }: GroupItemProps) => {
         {title}
       </Typography>
     </button>
-  );
-};
+  )
+}
 
-ThemeSelectGroup.item = GroupItem;
+ThemeSelectGroup.item = GroupItem
 
-export default ThemeSelectGroup;
+export default ThemeSelectGroup

@@ -1,9 +1,9 @@
-import { cn } from '@/lib';
-import React from 'react';
+import { cn } from '@/lib'
+import React from 'react'
 
 type Props = {
-  className?: string;
-};
+  className?: string
+}
 
 export default function Palette({ className }: Props) {
   return (
@@ -32,5 +32,5 @@ export default function Palette({ className }: Props) {
         strokeWidth="1.5"
       />
     </svg>
-  );
+  )
 }

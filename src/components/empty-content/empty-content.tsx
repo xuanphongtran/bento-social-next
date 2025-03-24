@@ -1,14 +1,14 @@
-import React from 'react';
-import Image from 'next/image';
+import React from 'react'
+import Image from 'next/image'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 //-----------------------------------------------------------------------------------------------
 
 interface Props {
-  content: React.ReactNode;
-  image?: string;
-  className?: string;
+  content: React.ReactNode
+  image?: string
+  className?: string
 }
 
 export default function EmptyContent({ content, image, className }: Props) {
@@ -32,5 +32,5 @@ export default function EmptyContent({ content, image, className }: Props) {
       />
       {content}
     </div>
-  );
+  )
 }

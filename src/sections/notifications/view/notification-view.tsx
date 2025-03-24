@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation'
+import { useEffect, useMemo, useState } from 'react'
 
-import useBreakpoint from '@/hooks/use-breakpoint';
+import useBreakpoint from '@/hooks/use-breakpoint'
 
 import {
   getNotifications,
   readAllNotifications,
   readNotification,
-} from '@/apis/notification';
-import { IAction, INotification } from '@/interfaces/notification';
+} from '@/apis/notification'
+import { IAction, INotification } from '@/interfaces/notification'
 
-import { AppBar } from '@/components/appbar';
-import { Button } from '@/components/button';
-import { ArrowBackIcon } from '@/components/icons';
-import { SplashScreen } from '@/components/loading-screen';
-import Tabbar from '@/components/tabbar/tabbar';
-import { Typography } from '@/components/typography';
+import { AppBar } from '@/components/appbar'
+import { Button } from '@/components/button'
+import { ArrowBackIcon } from '@/components/icons'
+import { SplashScreen } from '@/components/loading-screen'
+import Tabbar from '@/components/tabbar/tabbar'
+import { Typography } from '@/components/typography'
 
-import { NotificationList } from '../components/notification-list';
+import { NotificationList } from '../components/notification-list'
 
 //-----------------------------------------------------------------------------------------------
 
@@ -28,86 +28,86 @@ const TABITEMS = [
   { key: 'likes', label: 'Likes' },
   { key: 'replies', label: 'Replies' },
   { key: 'follows', label: 'Follows' },
-];
+]
 
 export default function NotificationsView() {
-  const { breakpoint } = useBreakpoint();
-  const [activeTab, setActiveTab] = useState(() => TABITEMS[0].key);
-  const [notification, setNotification] = useState<INotification[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { breakpoint } = useBreakpoint()
+  const [activeTab, setActiveTab] = useState(() => TABITEMS[0].key)
+  const [notification, setNotification] = useState<INotification[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      setLoading(true);
+      setLoading(true)
       try {
-        const data = await getNotifications();
-        setNotification(data.data.reverse());
+        const data = await getNotifications()
+        setNotification(data.data.reverse())
       } catch (error) {
-        console.error('Failed to load notifications:', error);
-        setError('Failed to load notifications.');
+        console.error('Failed to load notifications:', error)
+        setError('Failed to load notifications.')
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    fetchNotifications();
-  }, []);
+    }
+    fetchNotifications()
+  }, [])
 
   const handleReadAll = async () => {
     try {
-      await readAllNotifications();
+      await readAllNotifications()
       setNotification((prevNotifications) =>
         prevNotifications.map((n) => ({ ...n, isRead: true }))
-      );
+      )
     } catch (error) {
-      console.error('Failed to mark all notifications as read', error);
+      console.error('Failed to mark all notifications as read', error)
     }
-  };
+  }
 
   const handleReadSingle = async (id: string) => {
     try {
-      await readNotification(id);
+      await readNotification(id)
       setNotification((prevNotifications) =>
         prevNotifications.map((n) => (n.id === id ? { ...n, isRead: true } : n))
-      );
+      )
     } catch (error) {
-      console.error('Failed to mark notification as read:', error);
+      console.error('Failed to mark notification as read:', error)
     }
-  };
+  }
 
-  const isSmallScreen = breakpoint === 'sm';
+  const isSmallScreen = breakpoint === 'sm'
   const filteredNotification = useMemo(() => {
     switch (activeTab) {
       case 'all':
-        return notification;
+        return notification
       case 'likes':
-        return notification.filter((n) => n.action === IAction.LIKED);
+        return notification.filter((n) => n.action === IAction.LIKED)
       case 'replies':
-        return notification.filter((n) => n.action === IAction.REPLIED);
+        return notification.filter((n) => n.action === IAction.REPLIED)
       case 'follows':
-        return notification.filter((n) => n.action === IAction.FOLLOWED);
+        return notification.filter((n) => n.action === IAction.FOLLOWED)
       default:
-        return notification;
+        return notification
     }
-  }, [activeTab, notification]);
+  }, [activeTab, notification])
 
   const tabs = useMemo(() => {
     return isSmallScreen
       ? TABITEMS.filter((tab) => tab.key !== 'replies')
-      : TABITEMS;
-  }, [isSmallScreen]);
+      : TABITEMS
+  }, [isSmallScreen])
 
   const handleChangeTab = (tab: string) => {
     if (tab !== activeTab) {
-      setActiveTab(tab);
+      setActiveTab(tab)
     }
-  };
+  }
 
-  if (loading) return <SplashScreen />;
+  if (loading) return <SplashScreen />
 
-  if (error) return <p>{error}</p>;
+  if (error) return <p>{error}</p>
 
   return (
     <section
@@ -140,5 +140,5 @@ export default function NotificationsView() {
         onReadSingle={handleReadSingle}
       />
     </section>
-  );
+  )
 }

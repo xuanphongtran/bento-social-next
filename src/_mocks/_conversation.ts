@@ -1,21 +1,21 @@
 interface IConversation {
-  id: number;
+  id: number
   user: {
-    avatarUrl: string;
-    name: string;
-  };
-  content: string;
-  messages?: IMessage[];
+    avatarUrl: string
+    name: string
+  }
+  content: string
+  messages?: IMessage[]
 }
 
 interface IMessage {
   user: {
-    avatarUrl: string;
-    name: string;
-  };
-  content: string;
-  time: string;
-  imageUrl?: string;
+    avatarUrl: string
+    name: string
+  }
+  content: string
+  time: string
+  imageUrl?: string
 }
 
 const messages = [
@@ -44,7 +44,7 @@ const messages = [
     content: 'Hello, can I help you?',
     time: '8:30 AM',
   },
-];
+]
 
 export const _conversations: IConversation[] = [
   {
@@ -64,4 +64,4 @@ export const _conversations: IConversation[] = [
     },
     content: 'Test content 2',
   },
-];
+]

@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import { ReactNode } from 'react';
+import Image from 'next/image'
+import { ReactNode } from 'react'
 
-import { cn } from '@/lib';
+import { cn } from '@/lib'
 
 //-----------------------------------------------------------------------------------------------
 
 interface CircleAvatarProps {
-  upperItem?: ReactNode;
-  path: string;
-  className?: string;
+  upperItem?: ReactNode
+  path: string
+  className?: string
 }
 
 export const CircleAvatar: React.FC<CircleAvatarProps> = ({
@@ -31,5 +31,5 @@ export const CircleAvatar: React.FC<CircleAvatarProps> = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}

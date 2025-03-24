@@ -16,5 +16,5 @@ export default function EarthIcon() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

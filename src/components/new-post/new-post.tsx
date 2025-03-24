@@ -1,76 +1,76 @@
-import Image from 'next/image';
-import React from 'react';
-import { z } from 'zod';
+import Image from 'next/image'
+import React from 'react'
+import { z } from 'zod'
 
-import { createPost } from '@/apis/post';
-import { getTopics } from '@/apis/topic';
-import { usePost } from '@/context/post-context';
-import { useUserProfile } from '@/context/user-context';
-import { IPost } from '@/interfaces/post';
-import { ITopic } from '@/interfaces/topic';
-import { CreatePost, createPostSchema } from '@/schema/posts-schema';
+import { createPost } from '@/apis/post'
+import { getTopics } from '@/apis/topic'
+import { usePost } from '@/context/post-context'
+import { useUserProfile } from '@/context/user-context'
+import { IPost } from '@/interfaces/post'
+import { ITopic } from '@/interfaces/topic'
+import { CreatePost, createPostSchema } from '@/schema/posts-schema'
 
-import { Avatar } from '@/components/avatar';
-import { ArrowBackIcon } from '@/components/icons';
-import { CloseIcon } from '@/components/icons';
-import { UploadImgButton } from '@/components/new-post/post-control';
-import { Typography } from '@/components/typography';
+import { Avatar } from '@/components/avatar'
+import { ArrowBackIcon } from '@/components/icons'
+import { CloseIcon } from '@/components/icons'
+import { UploadImgButton } from '@/components/new-post/post-control'
+import { Typography } from '@/components/typography'
 
-import { Button } from '../button';
-import { Dropdown } from '../dropdown';
-import { DebouncedInput } from '../input';
-import { SplashScreen } from '../loading-screen';
+import { Button } from '../button'
+import { Dropdown } from '../dropdown'
+import { DebouncedInput } from '../input'
+import { SplashScreen } from '../loading-screen'
 
 //----------------------------------------------------------------------------------
 
 interface INewPostProps {
-  onBack?: () => void;
+  onBack?: () => void
 }
 
 export default function NewPost({ onBack }: INewPostProps) {
-  const [previewUrl, setPreviewUrl] = React.useState('');
-  const [uploadedImage, setUploadedImage] = React.useState('');
-  const [isUploading, setIsUploading] = React.useState(false);
-  const fileInputRef = React.useRef<HTMLInputElement | null>(null);
+  const [previewUrl, setPreviewUrl] = React.useState('')
+  const [uploadedImage, setUploadedImage] = React.useState('')
+  const [isUploading, setIsUploading] = React.useState(false)
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null)
 
-  const { userProfile } = useUserProfile();
-  const { addPost } = usePost();
+  const { userProfile } = useUserProfile()
+  const { addPost } = usePost()
 
-  const [selectedTopic, setSelectedTopic] = React.useState<string>('');
-  const [topics, setTopics] = React.useState<ITopic[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const [error, setError] = React.useState<string>('');
+  const [selectedTopic, setSelectedTopic] = React.useState<string>('')
+  const [topics, setTopics] = React.useState<ITopic[]>([])
+  const [loading, setLoading] = React.useState<boolean>(true)
+  const [error, setError] = React.useState<string>('')
 
-  const [content, setContent] = React.useState<string>('');
-  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
+  const [content, setContent] = React.useState<string>('')
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     getTopics()
       .then((response) => {
-        setTopics(response.data);
-        setSelectedTopic(response.data[0].id);
+        setTopics(response.data)
+        setSelectedTopic(response.data?.[0]?.id || '')
       })
       .catch((error) => {
-        console.error('Error fetching topics:', error);
-        setError('Failed load topics.');
+        console.error('Error fetching topics:', error)
+        setError('Failed load topics.')
       })
       .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+        setLoading(false)
+      })
+  }, [])
 
   const handleSubmit = async () => {
     try {
-      setIsSubmitting(true);
+      setIsSubmitting(true)
 
       const postData: CreatePost = {
         content: content.trim(),
         image: uploadedImage || null,
         topicId: selectedTopic,
-      };
+      }
 
-      const validatedData = createPostSchema.parse(postData);
-      const tempId = Math.random().toString(36).substring(2, 15);
+      const validatedData = createPostSchema.parse(postData)
+      const tempId = Math.random().toString(36).substring(2, 15)
 
       const newPost: IPost = {
         id: tempId,
@@ -99,42 +99,42 @@ export default function NewPost({ onBack }: INewPostProps) {
         type: uploadedImage === 'post' ? 'media' : 'text',
         hasLiked: false,
         hasSaved: false,
-      };
+      }
 
-      addPost(newPost);
+      addPost(newPost)
 
-      await createPost(validatedData);
+      await createPost(validatedData)
 
-      setContent('');
-      setPreviewUrl('');
-      setUploadedImage('');
+      setContent('')
+      setPreviewUrl('')
+      setUploadedImage('')
       if (fileInputRef.current) {
-        fileInputRef.current.value = '';
+        fileInputRef.current.value = ''
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const errorMessage = error.errors.map((err) => err.message).join(', ');
-        console.log(`Validation error: ${errorMessage}`);
+        const errorMessage = error.errors.map((err) => err.message).join(', ')
+        console.log(`Validation error: ${errorMessage}`)
       } else {
-        console.log('Failed to create post. Please try again.');
+        console.log('Failed to create post. Please try again.')
       }
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
 
-      if (onBack) onBack();
+      if (onBack) onBack()
     }
-  };
+  }
 
   const handleRemoveImage = () => {
-    setPreviewUrl('');
-    setUploadedImage('');
+    setPreviewUrl('')
+    setUploadedImage('')
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = ''
     }
-  };
+  }
 
-  if (loading) return <SplashScreen />;
-  if (error) return <div>{error}</div>;
+  if (loading) return <SplashScreen />
+  if (error) return <div>{error}</div>
 
   return (
     <div className="fixed w-full h-full top-0 left-0 bg-[#444444] z-20 md:bg-[#12121299] shadow-stack">
@@ -251,5 +251,5 @@ export default function NewPost({ onBack }: INewPostProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

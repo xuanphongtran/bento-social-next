@@ -1,9 +1,9 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 export default function NotificationIcon({
   className,
 }: {
-  className?: string;
+  className?: string
 }) {
   return (
     <svg
@@ -22,5 +22,5 @@ export default function NotificationIcon({
         />
       </g>
     </svg>
-  );
+  )
 }

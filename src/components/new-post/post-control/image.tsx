@@ -1,12 +1,12 @@
-'use client';
-import { uploadImage } from '@/apis/media';
-import React from 'react';
+'use client'
+import { uploadImage } from '@/apis/media'
+import React from 'react'
 
 interface ButtonUploadImgProps {
-  setPreviewUrl: (value: string) => void;
-  setUploadedImage: (value: string) => void;
-  setIsUploading: (value: boolean) => void;
-  fileInputRef: React.RefObject<HTMLInputElement>;
+  setPreviewUrl: (value: string) => void
+  setUploadedImage: (value: string) => void
+  setIsUploading: (value: boolean) => void
+  fileInputRef: React.RefObject<HTMLInputElement>
 }
 
 export default function ButtonUploadImg({
@@ -17,41 +17,41 @@ export default function ButtonUploadImg({
 }: ButtonUploadImgProps) {
   const handleButtonClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click();
+      fileInputRef.current.click()
     }
-  };
+  }
 
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[0]
 
     if (file) {
       try {
         if (!file.type.startsWith('image/')) {
-          throw new Error('File type is not supported');
+          throw new Error('File type is not supported')
         }
 
         if (file.size > 512 * 1024) {
-          throw new Error('File size is too large');
+          throw new Error('File size is too large')
         }
 
-        setIsUploading(true);
-        const reader = new FileReader();
+        setIsUploading(true)
+        const reader = new FileReader()
         reader.onloadend = () => {
-          setPreviewUrl(reader.result as string);
-        };
-        reader.readAsDataURL(file);
-        const response = await uploadImage(file);
+          setPreviewUrl(reader.result as string)
+        }
+        reader.readAsDataURL(file)
+        const response = await uploadImage(file)
 
-        setUploadedImage(response.data.url || URL.createObjectURL(file));
+        setUploadedImage(response.data.url || URL.createObjectURL(file))
       } catch (error) {
-        console.error('Upload failed:', error);
+        console.error('Upload failed:', error)
       } finally {
-        setIsUploading(false);
+        setIsUploading(false)
       }
     }
-  };
+  }
 
   return (
     <>
@@ -85,7 +85,7 @@ export default function ButtonUploadImg({
         className="hidden"
       />
     </>
-  );
+  )
 }
 // 'use client';
 // import React, { useRef } from 'react';

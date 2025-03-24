@@ -1,21 +1,21 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import { IPost } from '@/interfaces/post';
+import { IPost } from '@/interfaces/post'
 
-import { EmptyContent } from '../empty-content';
-import { Post } from '../post';
-import { Typography } from '../typography';
-import Link from 'next/link';
+import { EmptyContent } from '../empty-content'
+import { Post } from '../post'
+import { Typography } from '../typography'
+import Link from 'next/link'
 
 //-----------------------------------------------------------------------------------------------
 
 interface NewFeedProps {
-  contentType: 'post' | 'media';
-  data: IPost[];
-  loading?: boolean;
-  err?: string | null;
-  className?: string;
-  onDeleted?: (isDeleted: boolean) => void;
+  contentType: 'post' | 'media'
+  data: IPost[]
+  loading?: boolean
+  err?: string | null
+  className?: string
+  onDeleted?: (isDeleted: boolean) => void
 }
 
 export default function ActivityFeed({
@@ -33,7 +33,7 @@ export default function ActivityFeed({
         </li>
       ))}
     </ul>
-  );
+  )
 
   const media = (
     <div className="w-full h-fit grid grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
@@ -49,7 +49,7 @@ export default function ActivityFeed({
         </Link>
       ))}
     </div>
-  );
+  )
 
   return (
     <div className="">
@@ -71,5 +71,5 @@ export default function ActivityFeed({
         media
       )}
     </div>
-  );
+  )
 }

@@ -1,1 +1,1 @@
-export { default as PostListView } from './home-view';
+export { default as PostListView } from './home-view'

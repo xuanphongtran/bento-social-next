@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-import { Typography } from '@/components/typography';
+import { Typography } from '@/components/typography'
 
 //-----------------------------------------------------------------------------------------------
 
 interface BrightnessSliderProps {
-  width?: number;
-  height?: number;
-  initialValue?: number;
+  width?: number
+  height?: number
+  initialValue?: number
 }
 
 const BrightnessSlider: React.FC<BrightnessSliderProps> = ({
@@ -15,31 +15,31 @@ const BrightnessSlider: React.FC<BrightnessSliderProps> = ({
   height = 32,
   initialValue = 0,
 }) => {
-  const [brightness, setBrightness] = React.useState(initialValue);
-  const [isDragging, setIsDragging] = React.useState(false);
+  const [brightness, setBrightness] = React.useState(initialValue)
+  const [isDragging, setIsDragging] = React.useState(false)
 
   const handleSliderChange = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const offsetX = e.clientX - rect.left;
+    const rect = e.currentTarget.getBoundingClientRect()
+    const offsetX = e.clientX - rect.left
     const newBrightness = Math.max(
       1,
       Math.min(100, Math.round((offsetX / width) * 100))
-    );
-    setBrightness(newBrightness);
-  };
+    )
+    setBrightness(newBrightness)
+  }
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    handleSliderChange(e);
-  };
+    setIsDragging(true)
+    handleSliderChange(e)
+  }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isDragging) {
-      handleSliderChange(e);
+      handleSliderChange(e)
     }
-  };
+  }
 
-  const handleMouseUp = () => setIsDragging(false);
+  const handleMouseUp = () => setIsDragging(false)
 
   return (
     <div
@@ -66,7 +66,7 @@ const BrightnessSlider: React.FC<BrightnessSliderProps> = ({
         </Typography>
       </span>
     </div>
-  );
-};
+  )
+}
 
-export default BrightnessSlider;
+export default BrightnessSlider

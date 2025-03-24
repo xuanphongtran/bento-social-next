@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 export const chatMessagesSchema = z.object({
   id: z.string(),
@@ -7,6 +7,6 @@ export const chatMessagesSchema = z.object({
   content: z.string().nullable(),
   createdAt: z.date(),
   updatedAt: z.date(),
-});
+})
 
-export type ChatMessage = z.infer<typeof chatMessagesSchema>;
+export type ChatMessage = z.infer<typeof chatMessagesSchema>

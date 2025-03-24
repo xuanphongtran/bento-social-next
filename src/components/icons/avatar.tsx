@@ -16,5 +16,5 @@ export default function Avatar() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

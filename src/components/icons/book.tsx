@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 export default function BookIcon({ className }: { className?: string }) {
   return (
@@ -17,5 +17,5 @@ export default function BookIcon({ className }: { className?: string }) {
         />
       </g>
     </svg>
-  );
+  )
 }

@@ -1,33 +1,33 @@
-import React from 'react';
+import React from 'react'
 
-import { UploadIcon } from '@/components/icons';
+import { UploadIcon } from '@/components/icons'
 
 //-------------------------------------------------------------------------
 
 function handelSubmitMessage() {
   return (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const inputElement = e.currentTarget.querySelector('input');
-    const message = inputElement ? inputElement.value : '';
-    console.log(message);
-  };
+    e.preventDefault()
+    const inputElement = e.currentTarget.querySelector('input')
+    const message = inputElement ? inputElement.value : ''
+    console.log(message)
+  }
 }
 
 export default function ChatInput() {
-  const fileInputRef = React.useRef<HTMLInputElement | null>(null);
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null)
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click();
+      fileInputRef.current.click()
     }
-  };
+  }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[0]
     if (file) {
-      console.log('Selected file:', file);
+      console.log('Selected file:', file)
     }
-  };
+  }
   return (
     <div className="w-full p-3">
       <form onSubmit={handelSubmitMessage()}>
@@ -56,5 +56,5 @@ export default function ChatInput() {
         </div>
       </form>
     </div>
-  );
+  )
 }

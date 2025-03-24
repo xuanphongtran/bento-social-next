@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-import type { Config } from 'tailwindcss';
-import { fontFamily } from 'tailwindcss/defaultTheme';
+import type { Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config: Config = {
   content: [
@@ -243,7 +243,7 @@ const config: Config = {
       backdropBlur: {
         50: 'blur(50px)',
         16: 'blur(16px)',
-        35 :'blur(35.135135650634766px)',
+        35: 'blur(35.135135650634766px)',
       },
       zIndex: {
         999999: '999999',
@@ -260,5 +260,5 @@ const config: Config = {
     },
   },
   plugins: [],
-};
-export default config;
+}
+export default config

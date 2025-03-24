@@ -13,5 +13,5 @@ export default function Lock() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

@@ -1,19 +1,19 @@
-import React from 'react';
-import Image from 'next/image';
+import React from 'react'
+import Image from 'next/image'
 
-import SettingCard from './setting-card';
+import SettingCard from './setting-card'
 
 //-----------------------------------------------------------------------------------------------
 
 const NotificationBanner = () => {
-  const [isVisible, setIsVisible] = React.useState(true);
+  const [isVisible, setIsVisible] = React.useState(true)
 
   const handleClose = () => {
-    setIsVisible(false);
-  };
+    setIsVisible(false)
+  }
 
   if (!isVisible) {
-    return null;
+    return null
   }
   return (
     <SettingCard className="relative flex-row p-4 gap-5">
@@ -63,7 +63,7 @@ const NotificationBanner = () => {
         </p>
       </div>
     </SettingCard>
-  );
-};
+  )
+}
 
-export default NotificationBanner;
+export default NotificationBanner

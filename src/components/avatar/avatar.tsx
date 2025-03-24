@@ -1,15 +1,15 @@
-import { cn } from '@/lib/utils';
-import React from 'react';
-import Image from 'next/image';
-import { USER_AVATAR_PLACEHOLDER } from '@/constant';
+import { cn } from '@/lib/utils'
+import React from 'react'
+import Image from 'next/image'
+import { USER_AVATAR_PLACEHOLDER } from '@/constant'
 
 //-------------------------------------------------------------------------
 
 interface AvatarProps {
-  size?: number;
-  src?: string;
-  alt: string;
-  className?: string;
+  size?: number
+  src?: string
+  alt: string
+  className?: string
 }
 
 const Avatar: React.FC<AvatarProps> = ({ src, alt, size, className }) => (
@@ -28,6 +28,6 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt, size, className }) => (
       className={cn('rounded-full object-cover bg-neutral-100', className)}
     />
   </div>
-);
+)
 
-export default Avatar;
+export default Avatar

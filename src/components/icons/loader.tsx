@@ -1,9 +1,9 @@
-import { cn } from '@/lib';
-import React from 'react';
+import { cn } from '@/lib'
+import React from 'react'
 
 type Props = {
-  className?: string;
-};
+  className?: string
+}
 
 export default function Loader({ className }: Props) {
   return (
@@ -22,5 +22,5 @@ export default function Loader({ className }: Props) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

@@ -16,7 +16,7 @@ const GoLeft = () => {
         strokeLinejoin="round"
       />
     </svg>
-  );
-};
+  )
+}
 
-export default GoLeft;
+export default GoLeft

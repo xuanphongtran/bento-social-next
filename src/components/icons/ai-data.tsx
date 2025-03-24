@@ -3095,5 +3095,5 @@ export default function Aidata() {
         </clipPath>
       </defs>
     </svg>
-  );
+  )
 }

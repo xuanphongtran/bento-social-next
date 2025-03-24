@@ -1,40 +1,40 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
-import { useUserProfile } from '@/context/user-context';
+import { useUserProfile } from '@/context/user-context'
 
-import { Avatar } from '@/components/avatar';
-import { Button } from '@/components/button';
-import { Logo } from '@/components/icons';
-import { CloseIcon } from '@/components/icons';
-import Leave from '@/components/icons/leave';
-import SettingSlider from '@/components/icons/setting-slider';
-import { Typography } from '@/components/typography';
+import { Avatar } from '@/components/avatar'
+import { Button } from '@/components/button'
+import { Logo } from '@/components/icons'
+import { CloseIcon } from '@/components/icons'
+import Leave from '@/components/icons/leave'
+import SettingSlider from '@/components/icons/setting-slider'
+import { Typography } from '@/components/typography'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
-import { NAVIGATION_ITEMS } from './navigation-items';
-import NavigationBar from './navigationbar';
+import { NAVIGATION_ITEMS } from './navigation-items'
+import NavigationBar from './navigationbar'
 
-import { USER_AVATAR_PLACEHOLDER } from '@/constant/contants';
+import { USER_AVATAR_PLACEHOLDER } from '@/constant/contants'
 
 //-------------------------------------------------------------------------
 
 type MobileSidebarProps = {
-  className?: string;
-  onClose: () => void;
-};
+  className?: string
+  onClose: () => void
+}
 
 const MobileSidebar = ({ onClose, className }: MobileSidebarProps) => {
-  const navItems = NAVIGATION_ITEMS;
+  const navItems = NAVIGATION_ITEMS
 
-  const { userProfile: user } = useUserProfile();
+  const { userProfile: user } = useUserProfile()
 
   const currentUser = user && {
     fullname: `${user.firstName} ${user.lastName}`,
     nickname: user.username,
     avatar: user.avatar || USER_AVATAR_PLACEHOLDER,
     isActive: user.status === 'active',
-  };
+  }
 
   return (
     <section
@@ -107,7 +107,7 @@ const MobileSidebar = ({ onClose, className }: MobileSidebarProps) => {
         />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default MobileSidebar;
+export default MobileSidebar

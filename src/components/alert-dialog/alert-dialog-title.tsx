@@ -1,7 +1,7 @@
-import * as React from 'react';
-import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
+import * as React from 'react'
+import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +14,7 @@ const AlertDialogTitle = React.forwardRef<
     className={cn('text-primary text-lg font-bold', className)}
     {...props}
   />
-));
-AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName;
+))
+AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName
 
-export default AlertDialogTitle;
+export default AlertDialogTitle

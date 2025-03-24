@@ -1,19 +1,19 @@
-import React from 'react';
+import React from 'react'
 
-import { Typography } from '@/components/typography';
+import { Typography } from '@/components/typography'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 //-----------------------------------------------------------------------------------------------
 
 type AppBarProps = {
-  leading?: React.ReactNode;
-  title?: string;
-  trailing?: React.ReactNode;
-  leadingWidth?: number;
-  trailingWidth?: number;
-  className?: string;
-};
+  leading?: React.ReactNode
+  title?: string
+  trailing?: React.ReactNode
+  leadingWidth?: number
+  trailingWidth?: number
+  className?: string
+}
 
 const AppBar: React.FC<AppBarProps> = ({
   leading,
@@ -50,7 +50,7 @@ const AppBar: React.FC<AppBarProps> = ({
         </span>
       )}
     </section>
-  );
-};
+  )
+}
 
-export default AppBar;
+export default AppBar

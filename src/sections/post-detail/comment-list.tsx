@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-import { Post } from '@/components/post';
-import { IChilrenComment, ICommment } from '@/interfaces/comment';
+import { Post } from '@/components/post'
+import { IChilrenComment, ICommment } from '@/interfaces/comment'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 //--------------------------------------------------------------------------------------------------------
 
 interface commentListProps {
-  comments: ICommment[];
-  className?: string;
-  setParentComment?: (parentComment: { id: string; fullname: string }) => void;
+  comments: ICommment[]
+  className?: string
+  setParentComment?: (parentComment: { id: string; fullname: string }) => void
 }
 
 export default function CommentList({
@@ -59,5 +59,5 @@ export default function CommentList({
         </ul>
       )}
     </>
-  );
+  )
 }

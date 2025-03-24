@@ -1,7 +1,7 @@
-import { BellIcon, BrowserIcon, EmailIcon, NewsIcon } from '@/components/icons';
-import { Toggle } from '@/components/toggle';
-import SettingCard from '../components/setting-card';
-import NotificationBanner from '../components/notification-banner';
+import { BellIcon, BrowserIcon, EmailIcon, NewsIcon } from '@/components/icons'
+import { Toggle } from '@/components/toggle'
+import SettingCard from '../components/setting-card'
+import NotificationBanner from '../components/notification-banner'
 
 export const NotificationsSection = () => {
   return (
@@ -68,5 +68,5 @@ export const NotificationsSection = () => {
         </SettingCard.item>
       </SettingCard>
     </section>
-  );
-};
+  )
+}

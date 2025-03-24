@@ -1,11 +1,11 @@
-import { TrashIcon, LockIcon } from '@/components/icons';
-import MoreItem from './more-item';
+import { TrashIcon, LockIcon } from '@/components/icons'
+import MoreItem from './more-item'
 
 //--------------------------------------------------------------------------------------------------------
 
 interface MoreOptionsProps {
-  onEdit?: () => void;
-  onDelete?: () => void;
+  onEdit?: () => void
+  onDelete?: () => void
 }
 
 export default function MoreOptions({ onEdit, onDelete }: MoreOptionsProps) {
@@ -20,7 +20,7 @@ export default function MoreOptions({ onEdit, onDelete }: MoreOptionsProps) {
       icon: <TrashIcon />,
       onClick: onDelete,
     },
-  ];
+  ]
 
   return (
     <div className="absolute z-10 flex-col w-[15rem] p-2 bg-neutral3-70 shadow-dropup backdrop-blur-[32px] rounded-[1.5rem] top-[3rem] right-1">
@@ -33,5 +33,5 @@ export default function MoreOptions({ onEdit, onDelete }: MoreOptionsProps) {
         />
       ))}
     </div>
-  );
+  )
 }

@@ -90,7 +90,7 @@ const OnlineIcon = () => {
         </linearGradient>
       </defs>
     </svg>
-  );
-};
+  )
+}
 
-export default OnlineIcon;
+export default OnlineIcon

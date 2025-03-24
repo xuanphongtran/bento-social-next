@@ -16,5 +16,5 @@ export default function OulineCheckIcon() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

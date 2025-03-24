@@ -1,7 +1,7 @@
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 
 //------------------------------------------------------------------------------
 
-const TooltipProvider = TooltipPrimitive.Provider;
+const TooltipProvider = TooltipPrimitive.Provider
 
-export { TooltipProvider };
+export { TooltipProvider }

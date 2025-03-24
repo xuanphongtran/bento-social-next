@@ -1,5 +1,5 @@
-import { Icon } from '@/interfaces/icon';
-import React from 'react';
+import { Icon } from '@/interfaces/icon'
+import React from 'react'
 
 //--------------------------------------------------------------------------------------------------
 
@@ -24,5 +24,5 @@ export default function Bookmark({ ...props }: Icon) {
         />
       </g>
     </svg>
-  );
+  )
 }

@@ -1,1 +1,1 @@
-export { type Post, postSchema } from './schema';
+export { type Post, postSchema } from './schema'

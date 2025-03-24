@@ -30,5 +30,5 @@ export default function Emoji() {
         </g>
       </svg>
     </div>
-  );
+  )
 }

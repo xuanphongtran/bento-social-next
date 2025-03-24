@@ -1,38 +1,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+'use client'
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import React from 'react'
+import { useRouter } from 'next/navigation'
 
-import { _conversations as fakeConversation } from '@/_mocks/_conversation';
+import { _conversations as fakeConversation } from '@/_mocks/_conversation'
 
-import { Avatar } from '@/components/avatar';
-import { CloseIcon, MoreIcon } from '@/components/icons';
-import { Typography } from '@/components/typography';
-import { Button } from '@/components/button';
-import { ChatInput, MessageItem } from '../components';
+import { Avatar } from '@/components/avatar'
+import { CloseIcon, MoreIcon } from '@/components/icons'
+import { Typography } from '@/components/typography'
+import { Button } from '@/components/button'
+import { ChatInput, MessageItem } from '../components'
 
 //----------------------------------------------------------------------
 interface ConversationDetailPageProps {
-  id: string;
+  id: string
 }
 
 export default function ConversationDetailPage({
   id,
 }: ConversationDetailPageProps) {
-  const router = useRouter();
+  const router = useRouter()
 
   // Chuyển đổi `id` sang kiểu số và tìm kiếm cuộc trò chuyện
-  const conversationId = Number(id);
+  const conversationId = Number(id)
   const conversation = fakeConversation.find(
     (item: any) => item.id === conversationId
-  );
+  )
 
-  if (!conversation) return <p>Conversation not found</p>;
+  if (!conversation) return <p>Conversation not found</p>
 
   const handleBack = () => {
-    router.push('/messages');
-  };
+    router.push('/messages')
+  }
 
   return (
     <section className="block md:hidden w-full h-full flex-col bg-surface lg:flex">
@@ -66,5 +66,5 @@ export default function ConversationDetailPage({
 
       <ChatInput />
     </section>
-  );
+  )
 }

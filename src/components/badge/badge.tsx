@@ -1,10 +1,10 @@
-import { Typography } from '@/components/typography';
+import { Typography } from '@/components/typography'
 
 //----------------------------------------------
 
 type Props = {
-  content?: string | number;
-};
+  content?: string | number
+}
 
 const Badge = ({ content }: Props) => {
   if (content) {
@@ -16,13 +16,13 @@ const Badge = ({ content }: Props) => {
           </Typography>
         </div>
       </div>
-    );
+    )
   }
   return (
     <div className="m-1 relative p-[1px] bg-linear-red  rounded-full before:content-[''] before:absolute before:inset-0 before:opacity-75 before:bg-linear-card before:rounded-full">
       <div className="rounded-full  bg-linear-red h-2 w-2 flex items-center justify-center shadow-button backdrop-blur-16"></div>
     </div>
-  );
-};
+  )
+}
 
-export default Badge;
+export default Badge

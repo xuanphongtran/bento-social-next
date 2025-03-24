@@ -49,7 +49,7 @@ function Bubble({ className }: { className?: string }) {
         </filter>
       </defs>
     </svg>
-  );
+  )
 }
 
-export default Bubble;
+export default Bubble

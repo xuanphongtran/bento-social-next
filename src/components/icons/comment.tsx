@@ -20,5 +20,5 @@ export default function Comment() {
         />
       </g>
     </svg>
-  );
+  )
 }

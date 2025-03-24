@@ -1,7 +1,7 @@
 export interface AvatarData {
-  id: string;
-  src: string;
-  alt: string;
+  id: string
+  src: string
+  alt: string
 }
 
 export const _avatarData = [
@@ -20,4 +20,4 @@ export const _avatarData = [
     src: 'https://i.pinimg.com/originals/14/ab/f1/14abf1f58ea5686cf9e24ec22a099892.jpg',
     alt: 'User 3',
   },
-];
+]

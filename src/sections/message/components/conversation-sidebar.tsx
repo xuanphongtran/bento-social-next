@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { _conversations as fakeConversation } from '@/_mocks/_conversation';
+import { _conversations as fakeConversation } from '@/_mocks/_conversation'
 
-import { AddIcon } from '@/components/icons';
-import { Button } from '@/components/button';
+import { AddIcon } from '@/components/icons'
+import { Button } from '@/components/button'
 
-import ConversationItem from './conversation-item';
+import ConversationItem from './conversation-item'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -14,11 +14,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/alert-dialog';
+} from '@/components/alert-dialog'
 
 //----------------------------------------------------------------------
 interface ConversationSidebarProps {
-  onConversationClick: (id: any) => void;
+  onConversationClick: (id: any) => void
 }
 
 export default function ConversationSidebar({
@@ -56,5 +56,5 @@ export default function ConversationSidebar({
         ))}
       </div>
     </section>
-  );
+  )
 }

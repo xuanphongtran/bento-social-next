@@ -1,5 +1,5 @@
-import React from 'react';
-import style from '@/styles/preferences-setting.module.css';
+import React from 'react'
+import style from '@/styles/preferences-setting.module.css'
 
 export default function ThemeDarkBox() {
   return (
@@ -157,5 +157,5 @@ export default function ThemeDarkBox() {
         </div>
       </div>
     </div>
-  );
+  )
 }

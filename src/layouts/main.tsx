@@ -1,11 +1,11 @@
-import { cn } from '@/lib';
+import { cn } from '@/lib'
 
 // ---------------------------------------------------------------------------------------------------
 
 type Props = {
-  children: React.ReactNode;
-  className?: string;
-};
+  children: React.ReactNode
+  className?: string
+}
 
 const Main = ({ children, className }: Props) => {
   return (
@@ -18,7 +18,7 @@ const Main = ({ children, className }: Props) => {
       {children}
       <div id="portal-root" />
     </main>
-  );
-};
+  )
+}
 
-export default Main;
+export default Main

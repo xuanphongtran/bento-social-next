@@ -16,5 +16,5 @@ export default function Check() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

@@ -15,5 +15,5 @@ export default function LeftIcon() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

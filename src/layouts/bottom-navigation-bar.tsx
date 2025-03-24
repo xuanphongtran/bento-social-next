@@ -1,16 +1,16 @@
-import React from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import React from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 
-import { Badge } from '@/components/badge';
+import { Badge } from '@/components/badge'
 
-import { NAVIGATION_ITEMS, NavigationItem } from './navigation-items';
+import { NAVIGATION_ITEMS, NavigationItem } from './navigation-items'
 
 //-----------------------------------------------------------------------------------------------
 
 export default function BottomNavigationBar() {
   const navItems = NAVIGATION_ITEMS.filter(
     (item) => item.title !== 'My Profile'
-  );
+  )
 
   return (
     <div className="fixed z-10 bottom-4 w-full md:hidden ">
@@ -22,18 +22,18 @@ export default function BottomNavigationBar() {
         </nav>
       </section>
     </div>
-  );
+  )
 }
 
 type BottomNavItemProps = {
-  navItem: NavigationItem;
-};
+  navItem: NavigationItem
+}
 
 const BottomNavItem = ({ navItem }: BottomNavItemProps) => {
-  const { update, path, Icon } = navItem;
-  const router = useRouter();
-  const pathname = usePathname();
-  const isActive = pathname === path;
+  const { update, path, Icon } = navItem
+  const router = useRouter()
+  const pathname = usePathname()
+  const isActive = pathname === path
   return (
     <button
       onClick={() => router.push(path)}
@@ -52,5 +52,5 @@ const BottomNavItem = ({ navItem }: BottomNavItemProps) => {
         </span>
       </div>
     </button>
-  );
-};
+  )
+}

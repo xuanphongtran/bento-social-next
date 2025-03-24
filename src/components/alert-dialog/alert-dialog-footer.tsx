@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 // ----------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ const AlertDialogFooter = ({
     )}
     {...props}
   />
-);
-AlertDialogFooter.displayName = 'AlertDialogFooter';
+)
+AlertDialogFooter.displayName = 'AlertDialogFooter'
 
-export default AlertDialogFooter;
+export default AlertDialogFooter

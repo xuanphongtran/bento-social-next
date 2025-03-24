@@ -1,9 +1,9 @@
-import { forwardRef } from 'react';
-import Link, { LinkProps } from 'next/link';
+import { forwardRef } from 'react'
+import Link, { LinkProps } from 'next/link'
 
 interface ExtendedLinkProps extends LinkProps {
-  className?: string;
-  children: React.ReactNode;
+  className?: string
+  children: React.ReactNode
 }
 
 // ---------------------------------------------------------------------------------------------------
@@ -14,8 +14,8 @@ const RouterLink = forwardRef<HTMLAnchorElement, ExtendedLinkProps>(
       {children}
     </Link>
   )
-);
+)
 
-RouterLink.displayName = 'RouterLink';
+RouterLink.displayName = 'RouterLink'
 
-export default RouterLink;
+export default RouterLink

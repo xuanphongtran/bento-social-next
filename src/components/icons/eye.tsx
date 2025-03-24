@@ -14,7 +14,7 @@ function Eye({ className }: { className?: string }) {
         fillOpacity="0.7"
       />
     </svg>
-  );
+  )
 }
 
-export default Eye;
+export default Eye
