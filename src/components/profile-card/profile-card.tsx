@@ -1,23 +1,23 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
-import { Button } from '@/components/button';
-import { Typography } from '@/components/typography';
-import { AddIcon } from '@/components/icons';
+import { Button } from '@/components/button'
+import { Typography } from '@/components/typography'
+import { AddIcon } from '@/components/icons'
 
-import { IUserSimple } from '@/interfaces/user';
+import { IUserSimple } from '@/interfaces/user'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
-import { Avatar } from '../avatar';
+import { Avatar } from '../avatar'
 
 //-------------------------------------------------------------------------
 
 interface ProfileCardProps {
-  className?: string;
-  user: IUserSimple;
-  types?: 'follower' | 'following';
-  hasFollowedBack: boolean;
-  onFollow?: () => void;
+  className?: string
+  user: IUserSimple
+  types?: 'follower' | 'following'
+  hasFollowedBack: boolean
+  onFollow?: () => void
 }
 
 export default function ProfileCard({
@@ -61,5 +61,5 @@ export default function ProfileCard({
         </div>
       </div>
     </Link>
-  );
+  )
 }

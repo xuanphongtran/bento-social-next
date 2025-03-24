@@ -1,26 +1,26 @@
-import { INotification, IAction } from '@/interfaces/notification';
-import { Typography } from '@/components/typography';
+import { INotification, IAction } from '@/interfaces/notification'
+import { Typography } from '@/components/typography'
 
-import { CircleAvatar } from '../components/circle-avatar';
-import { FollowedSVG, LikedSVG, Loader, RepliedSVG } from '@/components/icons';
+import { CircleAvatar } from '../components/circle-avatar'
+import { FollowedSVG, LikedSVG, Loader, RepliedSVG } from '@/components/icons'
 
-import { getAction } from '../utils/get-Action';
-import { getTimeAgo } from '../utils/get-time-ago';
+import { getAction } from '../utils/get-Action'
+import { getTimeAgo } from '../utils/get-time-ago'
 
 //-----------------------------------------------------------------------------------------------
 
 interface NItemProps {
-  notification: INotification;
-  onRead: () => void;
+  notification: INotification
+  onRead: () => void
 }
 
 export const NotificationItem: React.FC<NItemProps> = ({
   notification,
   onRead,
 }) => {
-  const action = getAction(notification.action);
-  const upperItem = generateActionIcon(notification.action);
-  const timeAgo = getTimeAgo(notification.createdAt);
+  const action = getAction(notification.action)
+  const upperItem = generateActionIcon(notification.action)
+  const timeAgo = getTimeAgo(notification.createdAt)
 
   return (
     <li
@@ -57,8 +57,8 @@ export const NotificationItem: React.FC<NItemProps> = ({
         <div className="absolute top-4 right-4 p-[5px] bg-[#29b383] rounded-full"></div>
       )}
     </li>
-  );
-};
+  )
+}
 
 const generateActionIcon = (action: IAction) => {
   switch (action) {
@@ -67,24 +67,24 @@ const generateActionIcon = (action: IAction) => {
         <div className="p-[5px] bg-[#8B33E2] rounded-full">
           <FollowedSVG />
         </div>
-      );
+      )
     case IAction.LIKED:
       return (
         <div className="p-[5px] bg-wine rounded-full">
           <LikedSVG />
         </div>
-      );
+      )
     case IAction.REPLIED:
       return (
         <div className="p-[5px] bg-[#127DFA] rounded-full">
           <RepliedSVG />
         </div>
-      );
+      )
     default:
       return (
         <div className="p-[5px] bg-[#21B17E] rounded-full">
           <Loader />
         </div>
-      );
+      )
   }
-};
+}

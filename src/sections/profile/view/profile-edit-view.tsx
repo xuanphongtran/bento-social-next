@@ -1,73 +1,73 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import React from 'react';
+import Image from 'next/image'
+import React from 'react'
 
-import { updateUserProfile } from '@/apis/user';
-import { useUserProfile } from '@/context/user-context';
-import { IUserProfile } from '@/interfaces/user';
+import { updateUserProfile } from '@/apis/user'
+import { useUserProfile } from '@/context/user-context'
+import { IUserProfile } from '@/interfaces/user'
 
-import AvatarProfile from '@/components/avatar/avatar-profile';
+import AvatarProfile from '@/components/avatar/avatar-profile'
 
-import { EditForm, HeaderEdit } from '../profile-edit-components';
-import { AvatarUpdateDialog } from '@/components/avatar';
-import { uploadImage } from '@/apis/media';
+import { EditForm, HeaderEdit } from '../profile-edit-components'
+import { AvatarUpdateDialog } from '@/components/avatar'
+import { uploadImage } from '@/apis/media'
 
 //----------------------------------------------------------------
 
 export default function ProfileEditView() {
-  const { userProfile, setUserProfile } = useUserProfile();
-  const [loading, setLoading] = React.useState(false);
+  const { userProfile, setUserProfile } = useUserProfile()
+  const [loading, setLoading] = React.useState(false)
   const [profileData, setProfileData] = React.useState({
     firstName: userProfile?.firstName || '',
     lastName: userProfile?.lastName || '',
     username: userProfile?.username || '',
     bio: userProfile?.bio || '',
     websiteUrl: userProfile?.websiteUrl || '',
-  });
-  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  })
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false)
 
   const handleUpdateProfile = async () => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const response = await updateUserProfile(profileData);
-      setUserProfile(response.data);
+      const response = await updateUserProfile(profileData)
+      setUserProfile(response.data)
     } catch (error) {
-      console.error('Error updating profile:', error);
+      console.error('Error updating profile:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const handleFieldChange = (updatedData: Partial<IUserProfile>) => {
-    setProfileData((prevData) => ({ ...prevData, ...updatedData }));
-  };
+    setProfileData((prevData) => ({ ...prevData, ...updatedData }))
+  }
 
   const handleCoverUpdate = async (file: File) => {
     if (file) {
       try {
         if (!file.type.startsWith('image/')) {
-          throw new Error('File type is not supported');
+          throw new Error('File type is not supported')
         }
 
         if (file.size > 512 * 1024) {
-          throw new Error('File size is too large');
+          throw new Error('File size is too large')
         }
 
-        const response = await uploadImage(file);
-        const newAvatarUrl = response.data.url;
+        const response = await uploadImage(file)
+        const newAvatarUrl = response.data.url
 
-        await updateUserProfile({ cover: newAvatarUrl });
+        await updateUserProfile({ cover: newAvatarUrl })
 
         setUserProfile({
           ...userProfile,
           cover: newAvatarUrl,
-        } as IUserProfile);
+        } as IUserProfile)
       } catch (error) {
-        console.error('Upload failed:', error);
+        console.error('Upload failed:', error)
       }
     }
-  };
+  }
 
   return (
     <section className="relative w-full min-h-screen">
@@ -103,5 +103,5 @@ export default function ProfileEditView() {
         type="cover"
       />
     </section>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
 // ----------------------------------------------------------------------
 
 interface Props {
-  className?: string;
+  className?: string
 }
 
 export default function GoogleSVG({ className }: Props) {
@@ -38,5 +38,5 @@ export default function GoogleSVG({ className }: Props) {
         </clipPath>
       </defs>
     </svg>
-  );
+  )
 }

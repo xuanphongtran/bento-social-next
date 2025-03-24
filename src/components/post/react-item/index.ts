@@ -1,1 +1,1 @@
-export { default as ReactItem } from './react-item';
+export { default as ReactItem } from './react-item'

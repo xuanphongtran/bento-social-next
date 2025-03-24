@@ -1,4 +1,3 @@
-
 function Bubbles1({ className }: { className?: string }) {
   return (
     <svg
@@ -340,7 +339,7 @@ function Bubbles1({ className }: { className?: string }) {
         </linearGradient>
       </defs>
     </svg>
-  );
+  )
 }
 
-export default Bubbles1;
+export default Bubbles1

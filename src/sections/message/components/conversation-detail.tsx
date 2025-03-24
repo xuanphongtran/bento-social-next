@@ -1,10 +1,10 @@
-import { Avatar } from '@/components/avatar';
-import { Button } from '@/components/button';
-import { CloseIcon, MoreIcon } from '@/components/icons';
-import { Typography } from '@/components/typography';
+import { Avatar } from '@/components/avatar'
+import { Button } from '@/components/button'
+import { CloseIcon, MoreIcon } from '@/components/icons'
+import { Typography } from '@/components/typography'
 
-import MessageItem from './message-item';
-import ChatInput from './chat-input';
+import MessageItem from './message-item'
+import ChatInput from './chat-input'
 
 //----------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ const messages = [
     content: 'Hello, can I help you?',
     time: '8:30 AM',
   },
-];
+]
 
 const _conversations = [
   {
@@ -54,12 +54,12 @@ const _conversations = [
     },
     content: 'Test content 2',
   },
-];
+]
 
 export default function ConversationDetail() {
   const handleBack = () => {
     // navigate('/messages');
-  };
+  }
 
   return (
     <section className="block md:hidden w-full h-full flex-col bg-surface lg:flex">
@@ -93,5 +93,5 @@ export default function ConversationDetail() {
 
       <ChatInput />
     </section>
-  );
+  )
 }

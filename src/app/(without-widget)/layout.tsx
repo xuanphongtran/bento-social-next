@@ -1,36 +1,36 @@
-'use client';
-import ProtectedRoute from '@/components/protected-router';
-import { PostProvider } from '@/context/post-context';
-import { ProfileProvider } from '@/context/user-context';
-import useBreakPoint from '@/hooks/use-breakpoint';
-import BottomNavigationBar from '@/layouts/bottom-navigation-bar';
-import Main from '@/layouts/main';
-import Sidebar from '@/layouts/sidebar';
-import eventBus from '@/utils/event-emitter';
-import React from 'react';
+'use client'
+import ProtectedRoute from '@/components/protected-router'
+import { PostProvider } from '@/context/post-context'
+import { ProfileProvider } from '@/context/user-context'
+import useBreakPoint from '@/hooks/use-breakpoint'
+import BottomNavigationBar from '@/layouts/bottom-navigation-bar'
+import Main from '@/layouts/main'
+import Sidebar from '@/layouts/sidebar'
+import eventBus from '@/utils/event-emitter'
+import React from 'react'
 
 type Props = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 export default function MainLayout({ children }: Props) {
-  const { breakpoint } = useBreakPoint();
+  const { breakpoint } = useBreakPoint()
 
-  const [isPostShow, setIsPostShow] = React.useState(false);
+  const [isPostShow, setIsPostShow] = React.useState(false)
 
   React.useEffect(() => {
     const handleToggle = (status: boolean) => {
-      setIsPostShow(status);
-    };
+      setIsPostShow(status)
+    }
 
-    eventBus.on('isShowCreatePost', handleToggle);
+    eventBus.on('isShowCreatePost', handleToggle)
 
     return () => {
-      eventBus.off('isShowCreatePost', handleToggle);
-    };
-  }, []);
+      eventBus.off('isShowCreatePost', handleToggle)
+    }
+  }, [])
 
-  const isSmallScreen = breakpoint === 'sm';
+  const isSmallScreen = breakpoint === 'sm'
   return (
     <ProtectedRoute>
       <ProfileProvider>
@@ -43,5 +43,5 @@ export default function MainLayout({ children }: Props) {
         </PostProvider>
       </ProfileProvider>
     </ProtectedRoute>
-  );
+  )
 }

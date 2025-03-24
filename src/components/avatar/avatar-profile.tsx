@@ -1,49 +1,49 @@
-import React from 'react';
-import { uploadImage } from '@/apis/media';
-import { updateUserProfile } from '@/apis/user';
-import { useUserProfile } from '@/context/user-context';
-import { IUserProfile } from '@/interfaces/user';
+import React from 'react'
+import { uploadImage } from '@/apis/media'
+import { updateUserProfile } from '@/apis/user'
+import { useUserProfile } from '@/context/user-context'
+import { IUserProfile } from '@/interfaces/user'
 
-import { CameraIcon } from '../icons';
-import { USER_AVATAR_PLACEHOLDER } from '@/constant';
-import Avatar from './avatar';
-import AvatarUpdateDialog from './avatar-profile-dialog';
+import { CameraIcon } from '../icons'
+import { USER_AVATAR_PLACEHOLDER } from '@/constant'
+import Avatar from './avatar'
+import AvatarUpdateDialog from './avatar-profile-dialog'
 
 //-------------------------------------------------------------------------
 
 interface AvatarProfileProps {
-  avatar?: string;
-  canEdit: boolean;
+  avatar?: string
+  canEdit: boolean
 }
 const AvatarProfile = ({ avatar, canEdit }: AvatarProfileProps) => {
-  const { setUserProfile, userProfile } = useUserProfile();
-  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const { setUserProfile, userProfile } = useUserProfile()
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false)
 
   const handleUpdateAvatar = async (file: File) => {
     if (file) {
       try {
         if (!file.type.startsWith('image/')) {
-          throw new Error('File type is not supported');
+          throw new Error('File type is not supported')
         }
 
         if (file.size > 512 * 1024) {
-          throw new Error('File size is too large');
+          throw new Error('File size is too large')
         }
 
-        const response = await uploadImage(file);
-        const newAvatarUrl = response.data.url;
+        const response = await uploadImage(file)
+        const newAvatarUrl = response.data.url
 
-        await updateUserProfile({ avatar: newAvatarUrl });
+        await updateUserProfile({ avatar: newAvatarUrl })
 
         setUserProfile({
           ...userProfile,
           avatar: newAvatarUrl,
-        } as IUserProfile);
+        } as IUserProfile)
       } catch (error) {
-        console.error('Upload failed:', error);
+        console.error('Upload failed:', error)
       }
     }
-  };
+  }
 
   return (
     <>
@@ -67,10 +67,10 @@ const AvatarProfile = ({ avatar, canEdit }: AvatarProfileProps) => {
         onClose={() => setIsDialogOpen(false)}
         onUpdateAvatar={handleUpdateAvatar}
         currentAvatar={avatar || USER_AVATAR_PLACEHOLDER}
-        type='avatar'
+        type="avatar"
       />
     </>
-  );
-};
+  )
+}
 
-export default AvatarProfile;
+export default AvatarProfile

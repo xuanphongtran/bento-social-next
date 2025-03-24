@@ -1,13 +1,13 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-const usersRole = z.enum(['user', 'admin']);
+const usersRole = z.enum(['user', 'admin'])
 const usersStatus = z.enum([
   'active',
   'pending',
   'inactive',
   'banned',
   'deleted',
-]);
+])
 
 export const usersSchema = z.object({
   id: z.string(),
@@ -26,6 +26,6 @@ export const usersSchema = z.object({
   status: usersStatus.optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
-});
+})
 
-export type User = z.infer<typeof usersSchema>;
+export type User = z.infer<typeof usersSchema>

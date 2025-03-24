@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 const commentsStatus = z.enum([
   'pending',
@@ -6,7 +6,7 @@ const commentsStatus = z.enum([
   'rejected',
   'deleted',
   'spam',
-]);
+])
 
 export const commentsSchema = z.object({
   id: z.string(),
@@ -19,6 +19,6 @@ export const commentsSchema = z.object({
   status: commentsStatus,
   createdAt: z.date(),
   updatedAt: z.date().nullable(),
-});
+})
 
-export type Comment = z.infer<typeof commentsSchema>;
+export type Comment = z.infer<typeof commentsSchema>

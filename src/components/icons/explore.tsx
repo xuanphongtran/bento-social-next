@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 export default function ExploreIcon({ className }: { className?: string }) {
   return (
@@ -16,5 +16,5 @@ export default function ExploreIcon({ className }: { className?: string }) {
         />
       </g>
     </svg>
-  );
+  )
 }

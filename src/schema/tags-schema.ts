@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 export const tagsSchema = z.object({
   id: z.string(),
@@ -6,6 +6,6 @@ export const tagsSchema = z.object({
   postCount: z.number().optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
-});
+})
 
-export type Tag = z.infer<typeof tagsSchema>;
+export type Tag = z.infer<typeof tagsSchema>

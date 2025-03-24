@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import React from 'react';
+import React from 'react'
 
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 
 //--------------------------------------------------------------------------------------------
 
@@ -10,16 +10,16 @@ export default function SplashScreen({
   className,
   ...other
 }: {
-  className?: string;
+  className?: string
 }) {
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   if (!mounted) {
-    return null;
+    return null
   }
 
   return (
@@ -59,5 +59,5 @@ export default function SplashScreen({
         />
       </>
     </div>
-  );
+  )
 }

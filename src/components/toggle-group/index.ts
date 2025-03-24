@@ -1,2 +1,2 @@
-export * from './toggle-group';
-export * from './toggle-item';
+export * from './toggle-group'
+export * from './toggle-item'

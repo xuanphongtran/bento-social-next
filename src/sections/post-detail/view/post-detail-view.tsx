@@ -1,51 +1,51 @@
-'use client';
+'use client'
 
-import React from 'react';
+import React from 'react'
 
-import { ICommment } from '@/interfaces/comment';
-import { IPost } from '@/interfaces/post';
+import { ICommment } from '@/interfaces/comment'
+import { IPost } from '@/interfaces/post'
 
-import { getCommennts } from '@/apis/comment';
-import { getPostDetail } from '@/apis/post';
-import { usePost } from '@/context/post-context';
+import { getCommennts } from '@/apis/comment'
+import { getPostDetail } from '@/apis/post'
+import { usePost } from '@/context/post-context'
 
-import { ComposerInput } from '@/components/new-post';
-import { Post } from '@/components/post';
+import { ComposerInput } from '@/components/new-post'
+import { Post } from '@/components/post'
 
-import eventBus from '@/utils/event-emitter';
-import CommentList from '../comment-list';
+import eventBus from '@/utils/event-emitter'
+import CommentList from '../comment-list'
 
-import Header from '../header';
+import Header from '../header'
 
-import styles from '@/styles/post-detail.module.css';
+import styles from '@/styles/post-detail.module.css'
 
 //-------------------------------------------------------------------------
 
 export default function PostDetailView({ id }: { id: string }) {
-  const { posts } = usePost();
-  const post = posts.find((post) => post.id === id);
+  const { posts } = usePost()
+  const post = posts.find((post) => post.id === id)
 
-  const [data, setData] = React.useState<IPost | null>(null);
-  const [comments, setComments] = React.useState<ICommment[]>([]);
-  const [isViewFull, setIsViewFull] = React.useState(false);
-  const [isCreated, setIsCreated] = React.useState(false);
+  const [data, setData] = React.useState<IPost | null>(null)
+  const [comments, setComments] = React.useState<ICommment[]>([])
+  const [isViewFull, setIsViewFull] = React.useState(false)
+  const [isCreated, setIsCreated] = React.useState(false)
   const [parentComment, setParentComment] = React.useState<{
-    id: string;
-    fullname: string;
-  }>({ id: '', fullname: '' });
+    id: string
+    fullname: string
+  }>({ id: '', fullname: '' })
 
   const handleViewFullPost = () => {
-    const newIsViewFull = !isViewFull;
-    setIsViewFull(newIsViewFull);
+    const newIsViewFull = !isViewFull
+    setIsViewFull(newIsViewFull)
 
-    eventBus.emit('toggleSidebarRight', newIsViewFull);
-  };
+    eventBus.emit('toggleSidebarRight', newIsViewFull)
+  }
 
   React.useEffect(() => {
     getPostDetail(id)
       .then((response) => {
-        setData(response.data);
-        return response.data;
+        setData(response.data)
+        return response.data
       })
       .then((res) => {
         getCommennts(res.id).then((response) => {
@@ -59,19 +59,19 @@ export default function PostDetailView({ id }: { id: string }) {
                       return {
                         ...child,
                         author: child.user,
-                      };
+                      }
                     })
                   : [],
-            };
-          });
+            }
+          })
 
-          setComments(cmts);
-        });
+          setComments(cmts)
+        })
       })
       .catch((error) => {
-        console.error('Error fetching post detail:', error);
-      });
-  }, [id, isCreated]);
+        console.error('Error fetching post detail:', error)
+      })
+  }, [id, isCreated])
 
   return (
     <>
@@ -113,5 +113,5 @@ export default function PostDetailView({ id }: { id: string }) {
         </section>
       )}
     </>
-  );
+  )
 }

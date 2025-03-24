@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 // ----------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ function Skeleton({
       className={cn('animate-pulse rounded-md bg-gray-300', className)}
       {...props}
     />
-  );
+  )
 }
 
-export default Skeleton;
+export default Skeleton

@@ -1,19 +1,19 @@
-import { Avatar } from '@/components/avatar';
-import { Typography } from '@/components/typography';
+import { Avatar } from '@/components/avatar'
+import { Typography } from '@/components/typography'
 
 //----------------------------------------------------------------------
 
 interface IConversationItemProps {
-  isReaded: boolean;
-  conversation: IConversation;
-  onClick?: () => void;
+  isReaded: boolean
+  conversation: IConversation
+  onClick?: () => void
 }
 interface IConversation {
   user: {
-    avatarUrl: string;
-    name: string;
-  };
-  content: string;
+    avatarUrl: string
+    name: string
+  }
+  content: string
 }
 
 export default function ConversationItem({
@@ -58,5 +58,5 @@ export default function ConversationItem({
         </Typography>
       </div>
     </div>
-  );
+  )
 }

@@ -34,5 +34,5 @@ export default function Gif() {
         </g>
       </svg>
     </div>
-  );
+  )
 }

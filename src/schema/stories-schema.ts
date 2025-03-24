@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-const storiesStatus = z.enum(['active', 'inactive']);
+const storiesStatus = z.enum(['active', 'inactive'])
 
 export const storiesSchema = z.object({
   id: z.string(),
@@ -13,6 +13,6 @@ export const storiesSchema = z.object({
   status: storiesStatus,
   createdAt: z.date(),
   updatedAt: z.date(),
-});
+})
 
-export type Story = z.infer<typeof storiesSchema>;
+export type Story = z.infer<typeof storiesSchema>

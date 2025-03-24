@@ -19,5 +19,5 @@ export default function Add() {
         />
       </g>
     </svg>
-  );
+  )
 }

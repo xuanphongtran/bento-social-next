@@ -17,7 +17,7 @@ function Ring3({ className }: { className?: string }) {
         strokeWidth="1.5"
       />
     </svg>
-  );
+  )
 }
 
-export default Ring3;
+export default Ring3

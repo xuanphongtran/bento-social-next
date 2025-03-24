@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 // ----------------------------------------------------------------------
 
@@ -11,9 +11,9 @@ export const loginSchema = z.object({
     .string()
     .min(6, { message: 'Password must be at least 6 characters long' })
     .max(30, { message: 'Password must be 30 characters or less' }),
-});
+})
 
-export type LoginData = z.infer<typeof loginSchema>;
+export type LoginData = z.infer<typeof loginSchema>
 
 export const registerSchema = z.object({
   firstName: z
@@ -32,6 +32,6 @@ export const registerSchema = z.object({
     .string()
     .min(6, { message: 'Password must be at least 6 characters long' })
     .max(30, { message: 'Password must be 30 characters or less' }),
-});
+})
 
-export type RegisterData = z.infer<typeof registerSchema>;
+export type RegisterData = z.infer<typeof registerSchema>

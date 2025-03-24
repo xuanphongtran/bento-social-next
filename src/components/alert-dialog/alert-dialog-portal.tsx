@@ -1,7 +1,7 @@
-import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
+import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
 
 // ----------------------------------------------------------------------
 
-const AlertDialogPortal = AlertDialogPrimitive.Portal;
+const AlertDialogPortal = AlertDialogPrimitive.Portal
 
-export default AlertDialogPortal;
+export default AlertDialogPortal

@@ -1,4 +1,4 @@
-import SplashScreen from './splash-sceen';
+import SplashScreen from './splash-sceen'
 
 // ----------------------------------------------------------------------
 
@@ -8,5 +8,5 @@ export default function LoadingScreen() {
       <SplashScreen />
       {/* Loading... */}
     </div>
-  );
+  )
 }

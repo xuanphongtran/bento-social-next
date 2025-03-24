@@ -1,21 +1,21 @@
-import { cn } from '@/lib/utils';
-import React from 'react';
+import { cn } from '@/lib/utils'
+import React from 'react'
 
 type DropdownOption = {
-  label: string;
-  value: string;
-  color?: string;
-  [key: string]: string | undefined;
-};
+  label: string
+  value: string
+  color?: string
+  [key: string]: string | undefined
+}
 
 type DropdownProps = {
-  options: DropdownOption[];
-  value?: string;
-  onChange?: (value: string) => void;
-  placeholder?: string;
-  className?: string;
-  disabled?: boolean;
-};
+  options: DropdownOption[]
+  value?: string
+  onChange?: (value: string) => void
+  placeholder?: string
+  className?: string
+  disabled?: boolean
+}
 
 const Dropdown = ({
   options,
@@ -25,10 +25,10 @@ const Dropdown = ({
   className,
   disabled,
 }: DropdownProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const dropdownRef = React.useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = React.useState(false)
+  const dropdownRef = React.useRef<HTMLDivElement>(null)
 
-  const selectedOption = options.find((opt) => opt.value === value);
+  const selectedOption = options.find((opt) => opt.value === value)
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -36,20 +36,20 @@ const Dropdown = ({
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   const handleOptionClick = (optionValue: string) => {
     if (onChange) {
-      onChange(optionValue);
+      onChange(optionValue)
     }
-    setIsOpen(false);
-  };
+    setIsOpen(false)
+  }
 
   const renderOptionContent = (option: DropdownOption) => (
     <div className="flex items-center gap-2">
@@ -61,7 +61,7 @@ const Dropdown = ({
       )}
       <span>{option.label}</span>
     </div>
-  );
+  )
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -114,7 +114,7 @@ const Dropdown = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Dropdown;
+export default Dropdown

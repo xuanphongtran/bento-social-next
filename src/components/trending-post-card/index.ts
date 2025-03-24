@@ -1,1 +1,1 @@
-export { default as TrendingPostCard } from './trending-post-card';
+export { default as TrendingPostCard } from './trending-post-card'

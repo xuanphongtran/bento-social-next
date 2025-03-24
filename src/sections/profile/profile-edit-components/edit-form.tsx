@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { IUserProfile } from '@/interfaces/user';
+import { IUserProfile } from '@/interfaces/user'
 
 import {
   AvatarIcon,
@@ -9,16 +9,16 @@ import {
   OutlineCheckIcon,
   SolidCheckIcon,
   TagIcon,
-} from '@/components/icons';
-import { DebouncedInput } from '@/components/input';
-import { Typography } from '@/components/typography';
+} from '@/components/icons'
+import { DebouncedInput } from '@/components/input'
+import { Typography } from '@/components/typography'
 
 //----------------------------------------------------------------
 
 interface EditFormProps {
-  userInfo: IUserProfile;
-  onUpdateProfile: (updatedData: Partial<IUserProfile>) => void;
-  loading: boolean;
+  userInfo: IUserProfile
+  onUpdateProfile: (updatedData: Partial<IUserProfile>) => void
+  loading: boolean
 }
 
 export default function EditForm({
@@ -32,12 +32,12 @@ export default function EditForm({
     username: userInfo.username,
     bio: userInfo.bio,
     websiteUrl: userInfo.websiteUrl,
-  });
+  })
 
   const handleChange = (name: keyof IUserProfile, value: string) => {
-    setProfileData((prev) => ({ ...prev, [name]: value }));
-    onUpdateProfile({ [name]: value });
-  };
+    setProfileData((prev) => ({ ...prev, [name]: value }))
+    onUpdateProfile({ [name]: value })
+  }
 
   return (
     <section className="w-full h-full mt-[2rem] p-3">
@@ -153,5 +153,5 @@ export default function EditForm({
         {loading && <p>Updating...</p>}
       </div>
     </section>
-  );
+  )
 }

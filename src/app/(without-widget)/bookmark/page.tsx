@@ -1,11 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import { BookmarkView } from '@/sections/bookmark/view';
+import { BookmarkView } from '@/sections/bookmark/view'
 
 //-----------------------------------------------------------------------------------------------
 
 export default function Bookmark() {
-  return (
-    <BookmarkView />
-  );
+  return <BookmarkView />
 }

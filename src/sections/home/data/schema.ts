@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 // ----------------------------------------------------------------------
 
@@ -12,6 +12,6 @@ export const postSchema = z.object({
   type: z.enum(['text', 'media']),
   createdAt: z.string(),
   updatedAt: z.string(),
-});
+})
 
-export type Post = z.infer<typeof postSchema>;
+export type Post = z.infer<typeof postSchema>

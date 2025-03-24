@@ -1,11 +1,11 @@
-import { AuthProvider } from '@/context/auth-context';
-import QueryProvider from '@/providers/query-provider/query-provider';
-import React from 'react';
+import { AuthProvider } from '@/context/auth-context'
+import QueryProvider from '@/providers/query-provider/query-provider'
+import React from 'react'
 
 //-------------------------------------------------------------------------------------------
 
 interface AppProvidersProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export default function AppProviders({ children }: AppProvidersProps) {
@@ -13,5 +13,5 @@ export default function AppProviders({ children }: AppProvidersProps) {
     <QueryProvider>
       <AuthProvider>{children}</AuthProvider>
     </QueryProvider>
-  );
+  )
 }

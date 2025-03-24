@@ -1,12 +1,12 @@
-import { Typography } from '@/components/typography';
-import { cn } from '@/lib/utils';
+import { Typography } from '@/components/typography'
+import { cn } from '@/lib/utils'
 //--------------------------------------------------------------------------------------------------------
 
 interface ReactItemProps {
-  value: number;
-  icon: React.ReactNode;
-  className?: string;
-  onClick?: () => void;
+  value: number
+  icon: React.ReactNode
+  className?: string
+  onClick?: () => void
 }
 
 export default function ReactItem({
@@ -31,5 +31,5 @@ export default function ReactItem({
         {value}
       </Typography>
     </div>
-  );
+  )
 }

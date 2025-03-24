@@ -1,7 +1,7 @@
-import * as React from 'react';
-import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
+import * as React from 'react'
+import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 // ----------------------------------------------------------------------
 
@@ -14,8 +14,8 @@ const AlertDialogDescription = React.forwardRef<
     className={cn('text-sm text-tertiary', className)}
     {...props}
   />
-));
+))
 AlertDialogDescription.displayName =
-  AlertDialogPrimitive.Description.displayName;
+  AlertDialogPrimitive.Description.displayName
 
-export default AlertDialogDescription;
+export default AlertDialogDescription

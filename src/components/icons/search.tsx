@@ -19,5 +19,5 @@ export default function Search() {
         />
       </g>
     </svg>
-  );
+  )
 }

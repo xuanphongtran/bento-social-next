@@ -7,5 +7,5 @@ export default function Switch() {
         <span className="absolute h-4 w-4 left-1 bottom-1 bg-neutral2-30 transition duration-400 rounded-full peer-checked:translate-x-5"></span>
       </label>
     </>
-  );
+  )
 }

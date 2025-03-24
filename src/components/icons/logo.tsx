@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
 //----------------------------------------------------------------------
 
@@ -11,5 +11,5 @@ export default function Logo({ className }: { className?: string }) {
       alt="logo"
       className={`w-[100px] h-auto ${className}`}
     />
-  );
+  )
 }

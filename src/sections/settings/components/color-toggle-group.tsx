@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-import style from '@/styles/preferences-setting.module.css';
+import style from '@/styles/preferences-setting.module.css'
 
 //-----------------------------------------------------------------------------------------------
 
 interface ColorOptions {
-  key: string;
-  value: string;
+  key: string
+  value: string
 }
 interface ColorToggleProps {
-  selectedColor?: string;
-  colorOptions: ColorOptions[];
+  selectedColor?: string
+  colorOptions: ColorOptions[]
 }
 
 export default function ColorToggleGroup({
@@ -19,7 +19,7 @@ export default function ColorToggleGroup({
 }: ColorToggleProps) {
   const [selectedOption, setSelectedOption] = React.useState<
     string | undefined
-  >(selectedColor);
+  >(selectedColor)
   return (
     <div className="flex gap-3">
       {colorOptions.map((colorOption) => (
@@ -31,13 +31,13 @@ export default function ColorToggleGroup({
         />
       ))}
     </div>
-  );
+  )
 }
 
 interface ColorToggleItemProps {
-  colorValue: string;
-  onClick: () => void;
-  isActive?: boolean;
+  colorValue: string
+  onClick: () => void
+  isActive?: boolean
 }
 
 function ColorToggleItem({
@@ -53,5 +53,5 @@ function ColorToggleItem({
         backgroundColor: colorValue,
       }}
     />
-  );
+  )
 }

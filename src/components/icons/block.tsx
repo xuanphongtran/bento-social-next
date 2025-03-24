@@ -16,7 +16,7 @@ function Block({ className }: { className?: string }) {
         strokeLinecap="round"
       />
     </svg>
-  );
+  )
 }
 
-export default Block;
+export default Block

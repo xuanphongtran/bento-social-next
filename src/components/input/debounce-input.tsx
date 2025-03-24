@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { Input } from '.';
+import { Input } from '.'
 
 // ------------------------------------------------------------------------------------------
 
@@ -10,23 +10,23 @@ export default function DebouncedInput({
   debounce = 500,
   ...props
 }: {
-  value: string | number;
-  onChange: (value: string) => void;
-  debounce?: number;
+  value: string | number
+  onChange: (value: string) => void
+  debounce?: number
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = React.useState(initialValue)
 
   React.useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+    setValue(initialValue)
+  }, [initialValue])
 
   React.useEffect(() => {
     const timeout = setTimeout(() => {
-      return onChange(String(value));
-    }, debounce);
+      return onChange(String(value))
+    }, debounce)
 
-    return () => clearTimeout(timeout);
-  }, [value, onChange, debounce]);
+    return () => clearTimeout(timeout)
+  }, [value, onChange, debounce])
 
   return (
     <Input
@@ -34,5 +34,5 @@ export default function DebouncedInput({
       value={value}
       onChange={(e) => setValue(e.target.value as string)}
     />
-  );
+  )
 }

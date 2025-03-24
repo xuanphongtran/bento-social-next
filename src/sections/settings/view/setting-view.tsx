@@ -1,38 +1,38 @@
-'use client';
+'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation'
 
-import { AppBar } from '@/components/appbar';
-import { Avatar } from '@/components/avatar';
-import { Button } from '@/components/button';
-import { ChevronDownSmall, Eye, NotificationIcon } from '@/components/icons';
-import ArrowBack from '@/components/icons/arrow-back';
-import ListTile from '@/components/list-tile/list-tile';
-import SearchInput from '@/components/search-input/search-input';
-import { Typography } from '@/components/typography';
+import { AppBar } from '@/components/appbar'
+import { Avatar } from '@/components/avatar'
+import { Button } from '@/components/button'
+import { ChevronDownSmall, Eye, NotificationIcon } from '@/components/icons'
+import ArrowBack from '@/components/icons/arrow-back'
+import ListTile from '@/components/list-tile/list-tile'
+import SearchInput from '@/components/search-input/search-input'
+import { Typography } from '@/components/typography'
 
-import { useUserProfile } from '@/context/user-context';
-import useBreakPoint from '@/hooks/use-breakpoint';
-import { paths } from '@/routes/paths';
+import { useUserProfile } from '@/context/user-context'
+import useBreakPoint from '@/hooks/use-breakpoint'
+import { paths } from '@/routes/paths'
 
-import { USER_AVATAR_PLACEHOLDER } from '@/constant/contants';
-import { AccountsSection } from '../subsections/account-section';
-import { NotificationsSection } from '../subsections/notification-section';
-import { PreferencesSection } from '../subsections/preferences-section';
+import { USER_AVATAR_PLACEHOLDER } from '@/constant/contants'
+import { AccountsSection } from '../subsections/account-section'
+import { NotificationsSection } from '../subsections/notification-section'
+import { PreferencesSection } from '../subsections/preferences-section'
 
 //-----------------------------------------------------------------------------------------------
 
 type Setting = {
-  key: string;
-  label: string;
-  icon: JSX.Element;
+  key: string
+  label: string
+  icon: JSX.Element
   content?: {
-    title: string;
-    subtile: string;
-    status: string;
-    avatarUrl: string;
-  };
-};
+    title: string
+    subtile: string
+    status: string
+    avatarUrl: string
+  }
+}
 
 const SETTINGS: Setting[] = [
   {
@@ -50,29 +50,29 @@ const SETTINGS: Setting[] = [
     label: 'Preferences',
     icon: <Eye />,
   },
-];
+]
 
 const SettingsView = () => {
-  const { breakpoint } = useBreakPoint();
-  const router = useRouter();
+  const { breakpoint } = useBreakPoint()
+  const router = useRouter()
 
-  const searchParams = useSearchParams();
-  const currentView = searchParams?.get('view');
+  const searchParams = useSearchParams()
+  const currentView = searchParams?.get('view')
 
-  const { userProfile } = useUserProfile();
+  const { userProfile } = useUserProfile()
 
   const currentUser = userProfile && {
     fullname: `${userProfile.firstName} ${userProfile.lastName}`,
     nickname: userProfile.username,
     avatar: userProfile.avatar || USER_AVATAR_PLACEHOLDER,
     isActive: userProfile.status === 'active',
-  };
+  }
 
   const isLargeScreen =
     breakpoint === 'lg' ||
     breakpoint === 'xl' ||
     breakpoint === '2xl' ||
-    breakpoint === '3xl';
+    breakpoint === '3xl'
 
   const SettingsSection = {
     'account-settings': <AccountsSection />,
@@ -83,30 +83,29 @@ const SettingsView = () => {
         Not Found
       </section>
     ),
-  };
+  }
 
   const settings = SETTINGS.filter(
     (setting) => setting.key !== 'account-settings'
-  );
+  )
 
   const settingLabel =
-    SETTINGS.find((setting) => setting.key === currentView)?.label ||
-    'Settings';
+    SETTINGS.find((setting) => setting.key === currentView)?.label || 'Settings'
 
   const showView = () => {
     switch (currentView) {
       case 'account-settings':
-        return SettingsSection['account-settings'];
+        return SettingsSection['account-settings']
       case 'notifications':
-        return SettingsSection.notifications;
+        return SettingsSection.notifications
       case 'preferences':
-        return SettingsSection.preferences;
+        return SettingsSection.preferences
       case null:
-        return <></>;
+        return <></>
       default:
-        return SettingsSection.notfound;
+        return SettingsSection.notfound
     }
-  };
+  }
 
   return (
     <div className="h-screen w-full flex relative">
@@ -117,7 +116,7 @@ const SettingsView = () => {
         >
           <Button
             onClick={() => {
-              router.back();
+              router.back()
             }}
             className="group size-[40px]"
             child={
@@ -158,7 +157,7 @@ const SettingsView = () => {
             </ListTile>
           )}
           {settings.map((setting) => {
-            const isActive = currentView === setting.key;
+            const isActive = currentView === setting.key
             return (
               <ListTile
                 active={isActive}
@@ -182,7 +181,7 @@ const SettingsView = () => {
                   <ChevronDownSmall />
                 </span>
               </ListTile>
-            );
+            )
           })}
         </ul>
       </div>
@@ -240,7 +239,7 @@ const SettingsView = () => {
         {showView()}
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default SettingsView;
+export default SettingsView

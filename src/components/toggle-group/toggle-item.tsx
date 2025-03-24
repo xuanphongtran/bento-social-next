@@ -1,10 +1,10 @@
-import { Typography } from '@/components/typography';
-import React from 'react';
+import { Typography } from '@/components/typography'
+import React from 'react'
 
 interface ToggleItemProps {
-  label: string;
-  isActive: boolean;
-  onClick: () => void;
+  label: string
+  isActive: boolean
+  onClick: () => void
 }
 
 const ToggleItem: React.FC<ToggleItemProps> = ({
@@ -26,7 +26,7 @@ const ToggleItem: React.FC<ToggleItemProps> = ({
         {label}
       </Typography>
     </button>
-  );
-};
+  )
+}
 
-export default ToggleItem;
+export default ToggleItem

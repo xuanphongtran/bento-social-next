@@ -19,5 +19,5 @@ export default function Tag() {
         </g>
       </svg>
     </div>
-  );
+  )
 }

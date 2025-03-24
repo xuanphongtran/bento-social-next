@@ -1,68 +1,68 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import React from 'react';
-import { useParams } from 'next/navigation';
+import Link from 'next/link'
+import React from 'react'
+import { useParams } from 'next/navigation'
 
-import { getUserFollower, getUserFollowing } from '@/apis/user';
-import { IFollower } from '@/interfaces/follower';
+import { getUserFollower, getUserFollowing } from '@/apis/user'
+import { IFollower } from '@/interfaces/follower'
 
-import EmptyContent from '@/components/empty-content/empty-content';
-import ProfileCard from '@/components/profile-card/profile-card';
-import { Typography } from '@/components/typography';
+import EmptyContent from '@/components/empty-content/empty-content'
+import ProfileCard from '@/components/profile-card/profile-card'
+import { Typography } from '@/components/typography'
 
-import HeaderFollowers from '../header';
-import ToggleGroup from '@/components/toggle-group/toggle-group';
-import { SplashScreen } from '@/components/loading-screen';
+import HeaderFollowers from '../header'
+import ToggleGroup from '@/components/toggle-group/toggle-group'
+import { SplashScreen } from '@/components/loading-screen'
 
 //-------------------------------------------------------------------------
 
 export default function FollowersView() {
-  const params = useParams();
-  const userId = params?.id as string;
-  const [followers, setFollowers] = React.useState<IFollower[]>([]);
-  const [following, setFollowing] = React.useState<IFollower[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState<string | null>(null);
-  const [tab, setTab] = React.useState('1'); // '1' for Followers, '2' for Following
+  const params = useParams()
+  const userId = params?.id as string
+  const [followers, setFollowers] = React.useState<IFollower[]>([])
+  const [following, setFollowing] = React.useState<IFollower[]>([])
+  const [isLoading, setIsLoading] = React.useState(true)
+  const [error, setError] = React.useState<string | null>(null)
+  const [tab, setTab] = React.useState('1') // '1' for Followers, '2' for Following
 
   React.useEffect(() => {
     const fetchFollowersData = async () => {
-      if (!userId) return;
+      if (!userId) return
 
-      setIsLoading(true);
+      setIsLoading(true)
       try {
-        const response = await getUserFollower(userId);
-        setFollowers(response.data);
+        const response = await getUserFollower(userId)
+        setFollowers(response.data)
       } catch (error) {
-        console.error('Error fetching followers:', error);
-        setError('Failed to load followers.');
+        console.error('Error fetching followers:', error)
+        setError('Failed to load followers.')
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
-    };
+    }
 
-    fetchFollowersData();
-  }, [userId]);
+    fetchFollowersData()
+  }, [userId])
 
   React.useEffect(() => {
     const fetchFollowingData = async () => {
-      if (!userId) return;
+      if (!userId) return
 
-      setIsLoading(true);
+      setIsLoading(true)
       try {
-        const response = await getUserFollowing(userId);
-        setFollowing(response.data);
+        const response = await getUserFollowing(userId)
+        setFollowing(response.data)
       } catch (error) {
-        console.error('Error fetching following:', error);
-        setError('Failed to load following.');
+        console.error('Error fetching following:', error)
+        setError('Failed to load following.')
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
-    };
+    }
 
-    fetchFollowingData();
-  }, [userId]);
+    fetchFollowingData()
+  }, [userId])
 
   return (
     <section className="w-full max-h-full min-h-full p-3 pb-[5rem] md:pb-0 transition-all duration-[0.5s]">
@@ -153,5 +153,5 @@ export default function FollowersView() {
         </ul>
       )}
     </section>
-  );
+  )
 }

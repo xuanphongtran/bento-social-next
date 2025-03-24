@@ -1,32 +1,32 @@
-'use client';
-import React from 'react';
+'use client'
+import React from 'react'
 
-import useBreakPoint from '@/hooks/use-breakpoint';
+import useBreakPoint from '@/hooks/use-breakpoint'
 
-import { ConversationSidebar } from '../components';
-import EmptyContent from '@/components/empty-content/empty-content';
-import { Typography } from '@/components/typography';
+import { ConversationSidebar } from '../components'
+import EmptyContent from '@/components/empty-content/empty-content'
+import { Typography } from '@/components/typography'
 
-import ConversationDetailPage from './conversation-detail-view';
+import ConversationDetailPage from './conversation-detail-view'
 
 //-----------------------------------------------------------------------------------------------
 
 export default function Message() {
-  const { breakpoint } = useBreakPoint();
-  const [showDetailOnly, setShowDetailOnly] = React.useState(false);
+  const { breakpoint } = useBreakPoint()
+  const [showDetailOnly, setShowDetailOnly] = React.useState(false)
   const [selectedConversationId, setSelectedConversationId] = React.useState<
     string | null
-  >(null);
+  >(null)
 
-  const isMobile = breakpoint === 'sm';
-  const hideConsolidation = breakpoint === 'sm' || breakpoint === 'md';
+  const isMobile = breakpoint === 'sm'
+  const hideConsolidation = breakpoint === 'sm' || breakpoint === 'md'
 
   const handleConversationClick = (id: string) => {
     if (isMobile) {
-      setShowDetailOnly(true);
+      setShowDetailOnly(true)
     }
-    setSelectedConversationId(id);
-  };
+    setSelectedConversationId(id)
+  }
 
   return (
     <section className="w-full h-full flex flex-col justify-start transition-all duration-[0.5s] lg:flex-row lg:items-start">
@@ -53,5 +53,5 @@ export default function Message() {
         <ConversationDetailPage id={selectedConversationId} />
       ) : null}
     </section>
-  );
+  )
 }

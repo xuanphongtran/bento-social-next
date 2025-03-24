@@ -1,6 +1,6 @@
 //--------------------------------------------------------------------------
 interface RepostProps {
-  isActive: boolean;
+  isActive: boolean
 }
 
 export default function Repost({ isActive }: RepostProps) {
@@ -24,5 +24,5 @@ export default function Repost({ isActive }: RepostProps) {
         />
       </g>
     </svg>
-  );
+  )
 }

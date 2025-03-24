@@ -1,75 +1,73 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import React from 'react'
+import { useRouter } from 'next/navigation'
 
-import { getTopics } from '@/apis/topic';
-import { getPosts } from '@/apis/post';
+import { getTopics } from '@/apis/topic'
+import { getPosts } from '@/apis/post'
 
-import { IPost } from '@/interfaces/post';
-import { ITopic } from '@/interfaces/topic';
+import { IPost } from '@/interfaces/post'
+import { ITopic } from '@/interfaces/topic'
 
-import { SplashScreen } from '@/components/loading-screen';
-import { Button } from '@/components/button';
-import { ArrowBackIcon } from '@/components/icons';
-import SearchInput from '@/components/search-input/search-input';
-import { EmptyContent } from '@/components/empty-content';
-import { Typography } from '@/components/typography';
+import { SplashScreen } from '@/components/loading-screen'
+import { Button } from '@/components/button'
+import { ArrowBackIcon } from '@/components/icons'
+import SearchInput from '@/components/search-input/search-input'
+import { EmptyContent } from '@/components/empty-content'
+import { Typography } from '@/components/typography'
 
-import FilterBar from '../filter-bar';
-import ExploreCard from '../explore-card';
+import FilterBar from '../filter-bar'
+import ExploreCard from '../explore-card'
 
 //-----------------------------------------------------------------------------------------------
 
 export default function ExploreView() {
-  const router = useRouter();
-  const [searchStr, setSearchStr] = React.useState<string>('');
-  const [topics, setTopics] = React.useState<string[]>([]);
-  const [posts, setPosts] = React.useState<IPost[]>([]);
-  const [filteredPosts, setFilteredPosts] = React.useState<IPost[]>(posts);
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const [error, setError] = React.useState<Error | null>(null);
+  const router = useRouter()
+  const [searchStr, setSearchStr] = React.useState<string>('')
+  const [topics, setTopics] = React.useState<string[]>([])
+  const [posts, setPosts] = React.useState<IPost[]>([])
+  const [filteredPosts, setFilteredPosts] = React.useState<IPost[]>(posts)
+  const [isLoading, setIsLoading] = React.useState<boolean>(true)
+  const [error, setError] = React.useState<Error | null>(null)
 
   React.useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
-        const response = await getPosts({ str: searchStr, type: 'media' });
-        setPosts(response.data);
-        setFilteredPosts(response.data);
-        setIsLoading(false);
+        const response = await getPosts({ str: searchStr, type: 'media' })
+        setPosts(response.data)
+        setFilteredPosts(response.data)
+        setIsLoading(false)
       } catch (error) {
-        console.error('Error fetching posts:', error);
-        setError(new Error('Failed to fetch posts'));
+        console.error('Error fetching posts:', error)
+        setError(new Error('Failed to fetch posts'))
       }
-    })();
-  }, [searchStr]);
+    })()
+  }, [searchStr])
 
   React.useEffect(() => {
     const fetchTopics = async () => {
       try {
-        const response = await getTopics();
+        const response = await getTopics()
 
-        const topicNames = response.data.map((topic: ITopic) => topic.name);
-        setTopics(['All', ...topicNames]);
+        const topicNames = response.data.map((topic: ITopic) => topic.name)
+        setTopics(['All', ...topicNames])
       } catch (error) {
-        console.error('Error fetching topics:', error);
+        console.error('Error fetching topics:', error)
       } finally {
       }
-    };
+    }
 
-    fetchTopics();
-  }, []);
+    fetchTopics()
+  }, [])
 
   const handleTagSelect = (tag: string) => {
     if (tag === 'All') {
-      setFilteredPosts(posts);
+      setFilteredPosts(posts)
     } else {
-      const topicFilteredPosts = posts.filter(
-        (post) => post.topic.name === tag
-      );
-      setFilteredPosts(topicFilteredPosts);
+      const topicFilteredPosts = posts.filter((post) => post.topic.name === tag)
+      setFilteredPosts(topicFilteredPosts)
     }
-  };
+  }
 
   return (
     <section className="w-full min-h-screen max-h-fit flex flex-col p-3 gap-3 bg-surface">
@@ -109,5 +107,5 @@ export default function ExploreView() {
         </div>
       )}
     </section>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import { CameraIcon, Loader2Icon } from 'lucide-react';
-import Image from 'next/image';
-import React from 'react';
+import { CameraIcon, Loader2Icon } from 'lucide-react'
+import Image from 'next/image'
+import React from 'react'
 
 import {
   AlertDialog,
@@ -8,18 +8,18 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/alert-dialog';
-import { Button } from '@/components/button';
-import { Typography } from '../typography';
+} from '@/components/alert-dialog'
+import { Button } from '@/components/button'
+import { Typography } from '../typography'
 
 //-------------------------------------------------------------------------
 
 interface AvatarUpdateDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onUpdateAvatar: (file: File) => Promise<void>;
-  currentAvatar: string;
-  type: 'avatar' | 'cover';
+  isOpen: boolean
+  onClose: () => void
+  onUpdateAvatar: (file: File) => Promise<void>
+  currentAvatar: string
+  type: 'avatar' | 'cover'
 }
 
 const AvatarUpdateDialog: React.FC<AvatarUpdateDialogProps> = ({
@@ -29,34 +29,34 @@ const AvatarUpdateDialog: React.FC<AvatarUpdateDialogProps> = ({
   currentAvatar,
   type,
 }) => {
-  const [previewUrl, setPreviewUrl] = React.useState('');
-  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
-  const [isUploading, setIsUploading] = React.useState(false);
+  const [previewUrl, setPreviewUrl] = React.useState('')
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null)
+  const [isUploading, setIsUploading] = React.useState(false)
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[0]
     if (file) {
-      setSelectedFile(file);
-      const fileUrl = URL.createObjectURL(file);
-      setPreviewUrl(fileUrl);
+      setSelectedFile(file)
+      const fileUrl = URL.createObjectURL(file)
+      setPreviewUrl(fileUrl)
     }
-  };
+  }
 
   const handleUpload = async () => {
-    if (!selectedFile) return;
+    if (!selectedFile) return
 
     try {
-      setIsUploading(true);
-      await onUpdateAvatar(selectedFile);
-      setPreviewUrl('');
-      setSelectedFile(null);
-      onClose();
+      setIsUploading(true)
+      await onUpdateAvatar(selectedFile)
+      setPreviewUrl('')
+      setSelectedFile(null)
+      onClose()
     } catch (error) {
-      console.error('Error uploading avatar:', error);
+      console.error('Error uploading avatar:', error)
     } finally {
-      setIsUploading(false);
+      setIsUploading(false)
     }
-  };
+  }
 
   return (
     <AlertDialog open={isOpen} onOpenChange={onClose}>
@@ -66,7 +66,9 @@ const AvatarUpdateDialog: React.FC<AvatarUpdateDialogProps> = ({
         </AlertDialogHeader>
 
         <div className="flex flex-col items-center gap-6 py-4">
-          <div className={`relative overflow-hidden bg-neutral2-5 ${type === 'avatar' ? 'w-40 h-40 rounded-full' : 'w-full h-40 rounded-md'}`}>
+          <div
+            className={`relative overflow-hidden bg-neutral2-5 ${type === 'avatar' ? 'w-40 h-40 rounded-full' : 'w-full h-40 rounded-md'}`}
+          >
             <Image
               src={previewUrl || currentAvatar}
               alt="Avatar preview"
@@ -128,7 +130,7 @@ const AvatarUpdateDialog: React.FC<AvatarUpdateDialogProps> = ({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  );
-};
+  )
+}
 
-export default AvatarUpdateDialog;
+export default AvatarUpdateDialog

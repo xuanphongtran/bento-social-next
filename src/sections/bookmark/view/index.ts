@@ -1,1 +1,1 @@
-export { default as BookmarkView } from './bookmark-view';
+export { default as BookmarkView } from './bookmark-view'

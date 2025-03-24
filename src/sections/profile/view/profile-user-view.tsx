@@ -1,89 +1,87 @@
-'use client';
+'use client'
 
-import React from 'react';
+import React from 'react'
 
-import { getPosts } from '@/apis/post';
-import { getUserProfileById } from '@/apis/user';
-import { IPost } from '@/interfaces/post';
-import { IUserProfile } from '@/interfaces/user';
+import { getPosts } from '@/apis/post'
+import { getUserProfileById } from '@/apis/user'
+import { IPost } from '@/interfaces/post'
+import { IUserProfile } from '@/interfaces/user'
 
-import ToggleGroup from '@/components/toggle-group/toggle-group';
-import ActivityFeed from '@/components/user-activity-feed/user-activity-feed';
+import ToggleGroup from '@/components/toggle-group/toggle-group'
+import ActivityFeed from '@/components/user-activity-feed/user-activity-feed'
 
-import ProfileHead from '../profile-components/header';
-import UserInfo from '../profile-components/user-info';
+import ProfileHead from '../profile-components/header'
+import UserInfo from '../profile-components/user-info'
 
 //--------------------------------------------------------------------------------------------------------
 
 interface ProfileUserViewProps {
-  userId: string;
+  userId: string
 }
 
 export default function ProfileUserView({ userId }: ProfileUserViewProps) {
-  const [user, setUser] = React.useState<IUserProfile | null>(null);
-  const [posts, setPosts] = React.useState<IPost[]>([]);
-  const [postMedia, setPostMedia] = React.useState<IPost[]>([]);
-  const [error, setError] = React.useState<string | null>(null);
-  const [loading, setLoading] = React.useState(true);
+  const [user, setUser] = React.useState<IUserProfile | null>(null)
+  const [posts, setPosts] = React.useState<IPost[]>([])
+  const [postMedia, setPostMedia] = React.useState<IPost[]>([])
+  const [error, setError] = React.useState<string | null>(null)
+  const [loading, setLoading] = React.useState(true)
   const [params, setParams] = React.useState<Record<string, string | boolean>>(
     {}
-  );
-  const [contentType, setContentType] = React.useState<'post' | 'media'>(
-    'post'
-  );
+  )
+  const [contentType, setContentType] = React.useState<'post' | 'media'>('post')
 
   React.useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        setLoading(true);
-        const userData = await getUserProfileById(userId);
-        setUser(userData.data);
+        setLoading(true)
+        const userData = await getUserProfileById(userId)
+        setUser(userData.data)
       } catch (error) {
-        console.error('Error fetching user profile:', error);
-        setError('Failed to load user profile.');
+        console.error('Error fetching user profile:', error)
+        setError('Failed to load user profile.')
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchUserProfile();
-  }, [userId]);
+    fetchUserProfile()
+  }, [userId])
 
   React.useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const data = await getPosts({ ...params, userId });
-        setPosts(data.data);
-        setPostMedia(data.data.filter((post) => post.type === 'media'));
+        const data = await getPosts({ ...params, userId })
+        setPosts(data.data)
+        setPostMedia(data.data.filter((post) => post.type === 'media'))
       } catch (error) {
-        console.error('Error fetching posts:', error);
-        setError('Failed to load posts.');
+        console.error('Error fetching posts:', error)
+        setError('Failed to load posts.')
       }
-    };
+    }
 
-    fetchPosts();
-  }, [params, userId]);
+    fetchPosts()
+  }, [params, userId])
 
   const handleToggle = (key: string) => {
     switch (key) {
       case 'posts':
-        setParams({});
-        setContentType('post');
-        break;
+        setParams({})
+        setContentType('post')
+        break
       case 'featured':
-        setParams({ isFeatured: true });
-        setContentType('post');
-        break;
+        setParams({ isFeatured: true })
+        setContentType('post')
+        break
       case 'media':
-        setParams({ type: 'media' });
-        setContentType('media');
-        break;
+        setParams({ type: 'media' })
+        setContentType('media')
+        break
       default:
-        console.warn(`Unexpected key: ${key}`);
+        console.warn(`Unexpected key: ${key}`)
     }
-  };
+  }
 
-  if (!user || loading) return <></>;
+  if (!user || loading) return <></>
 
   return (
     <section className="relative w-full h-fit min-h-svh overflow-hidden">
@@ -107,5 +105,5 @@ export default function ProfileUserView({ userId }: ProfileUserViewProps) {
         />
       </div>
     </section>
-  );
+  )
 }

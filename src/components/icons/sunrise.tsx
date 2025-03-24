@@ -1,14 +1,14 @@
-import { cn } from '@/lib';
-import React from 'react';
+import { cn } from '@/lib'
+import React from 'react'
 
 type Props = {
-  className?: string;
-};
+  className?: string
+}
 
 export default function Sunrise({ className }: Props) {
   return (
     <svg
-    className={cn('h-6 w-6 stroke-secondary', className)}
+      className={cn('h-6 w-6 stroke-secondary', className)}
       width={24}
       height={24}
       viewBox="0 0 24 24"
@@ -22,5 +22,5 @@ export default function Sunrise({ className }: Props) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

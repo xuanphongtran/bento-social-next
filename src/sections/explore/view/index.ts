@@ -1,1 +1,1 @@
-export { default as ExploreView } from './explore-view';
+export { default as ExploreView } from './explore-view'

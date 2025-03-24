@@ -1,22 +1,22 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import { Avatar } from '@/components/avatar';
-import { Typography } from '@/components/typography';
+import { Avatar } from '@/components/avatar'
+import { Typography } from '@/components/typography'
 
 //----------------------------------------------------------------------
 
 interface IMessageItemProps {
-  message: IMessage;
+  message: IMessage
 }
 
 interface IMessage {
   user: {
-    avatarUrl: string;
-    name: string;
-  };
-  content: string;
-  imageUrl?: string;
-  time: string;
+    avatarUrl: string
+    name: string
+  }
+  content: string
+  imageUrl?: string
+  time: string
 }
 
 export default function MessageItem({ message }: IMessageItemProps) {
@@ -50,5 +50,5 @@ export default function MessageItem({ message }: IMessageItemProps) {
         )}
       </div>
     </div>
-  );
+  )
 }

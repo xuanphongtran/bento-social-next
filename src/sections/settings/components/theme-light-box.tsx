@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import style from '@/styles/preferences-setting.module.css';
+import style from '@/styles/preferences-setting.module.css'
 
 //-------------------------------------------------------------------------------------
 
@@ -151,5 +151,5 @@ export default function ThemeLightBox() {
         </div>
       </div>
     </div>
-  );
+  )
 }

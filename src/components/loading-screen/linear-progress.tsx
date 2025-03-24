@@ -1,18 +1,18 @@
-import { CSSProperties } from 'react';
+import { CSSProperties } from 'react'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 // ----------------------------------------------------------------------
 
-type IStyle = CSSProperties;
+type IStyle = CSSProperties
 
 interface LinearProgressProps {
-  color?: string;
-  sx?: IStyle;
+  color?: string
+  sx?: IStyle
 }
 
 export default function LinearProgress({ color, sx }: LinearProgressProps) {
-  const { width, maxWidth } = { ...sx };
+  const { width, maxWidth } = { ...sx }
 
   return (
     <div
@@ -29,5 +29,5 @@ export default function LinearProgress({ color, sx }: LinearProgressProps) {
         className={`absolute left-0 top-0 bottom-0 transition-transform duration-200 ease-linear origin-left bg-${color} w-auto animate-linear-indeterminate2`}
       ></span>
     </div>
-  );
+  )
 }

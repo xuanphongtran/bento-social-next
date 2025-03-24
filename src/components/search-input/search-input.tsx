@@ -1,15 +1,15 @@
-'use client';
-import React from 'react';
-import { SearchIcon } from '../icons';
-import { DebouncedInput } from '../input';
-import { cn } from '@/lib/utils';
+'use client'
+import React from 'react'
+import { SearchIcon } from '../icons'
+import { DebouncedInput } from '../input'
+import { cn } from '@/lib/utils'
 
 type SearchInputProps = {
-  placeholder: string;
-  className?: string;
-  search?: string;
-  setSearch?: (searchStr: string) => void;
-};
+  placeholder: string
+  className?: string
+  search?: string
+  setSearch?: (searchStr: string) => void
+}
 
 const SearchInput = ({
   placeholder,
@@ -35,7 +35,7 @@ const SearchInput = ({
         className="flex-1"
       ></DebouncedInput>
     </form>
-  );
-};
+  )
+}
 
-export default SearchInput;
+export default SearchInput

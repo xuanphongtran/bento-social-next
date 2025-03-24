@@ -1,5 +1,5 @@
 interface ColorIcon {
-  color: string;
+  color: string
 }
 
 const ColorIcon: React.FC<ColorIcon> = ({ color }) => {
@@ -13,7 +13,7 @@ const ColorIcon: React.FC<ColorIcon> = ({ color }) => {
     >
       <circle cx="4.375" cy="4" r="4" fill={color} />
     </svg>
-  );
-};
+  )
+}
 
-export default ColorIcon;
+export default ColorIcon

@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
-import React from 'react';
+import React from 'react'
 
-import { LeftButton, RightButton } from '@/components/icons';
+import { LeftButton, RightButton } from '@/components/icons'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 //-----------------------------------------------------------------------------------------------
 
 interface TagsBarProps {
-  tagNames: string[];
-  className?: string;
-  onTagSelect: (tag: string) => void;
+  tagNames: string[]
+  className?: string
+  onTagSelect: (tag: string) => void
 }
 
 export default function FilterBar({
@@ -19,12 +19,12 @@ export default function FilterBar({
   className,
   onTagSelect,
 }: TagsBarProps) {
-  const [activeTagIndex, setActiveTagIndex] = React.useState<number>(0);
+  const [activeTagIndex, setActiveTagIndex] = React.useState<number>(0)
 
   const handleTagClick = (index: number) => {
-    setActiveTagIndex(index);
-    onTagSelect(tagNames[index]);
-  };
+    setActiveTagIndex(index)
+    onTagSelect(tagNames[index])
+  }
 
   return (
     <div
@@ -69,5 +69,5 @@ export default function FilterBar({
         <RightButton />
       </div>
     </div>
-  );
+  )
 }

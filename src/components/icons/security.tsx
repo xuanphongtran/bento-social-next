@@ -16,5 +16,5 @@ export default function SecurityIcon() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

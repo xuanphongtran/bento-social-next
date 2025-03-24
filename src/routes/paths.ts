@@ -1,7 +1,7 @@
 const ROOTS = {
   HOME: '/',
   DASHBOARD: '/dashboard',
-};
+}
 
 export const paths = {
   // AUTH
@@ -10,4 +10,4 @@ export const paths = {
     register: `${ROOTS.HOME}/register`,
   },
   settings: `${ROOTS.HOME}settings`,
-};
+}

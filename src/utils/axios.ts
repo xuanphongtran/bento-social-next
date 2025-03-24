@@ -1,54 +1,54 @@
-'use client';
+'use client'
 
-import axios, { AxiosRequestConfig } from 'axios';
-import { useRouter } from 'next/navigation';
+import axios, { AxiosRequestConfig } from 'axios'
+import { useRouter } from 'next/navigation'
 
-import { HOST_API } from '../global-config';
+import { HOST_API } from '../global-config'
 
 //----------------------------------------------------------------------
 
-const axiosInstance = axios.create({ baseURL: HOST_API });
+const axiosInstance = axios.create({ baseURL: HOST_API })
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem('token')
     if (token && config.headers) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+      config.headers['Authorization'] = `Bearer ${token}`
     }
-    return config;
+    return config
   },
   (error) => Promise.reject(error)
-);
+)
 
 axiosInstance.interceptors.response.use(
   (res) => res,
   (error) => {
     if (error.response && error.response.status === 401) {
       if (typeof window !== 'undefined') {
-        const router = useRouter();
-        router.push('/login');
+        const router = useRouter()
+        router.push('/login')
       }
     }
     return Promise.reject(
       (error.response && error.response.data) || 'Something went wrong'
-    );
+    )
   }
-);
+)
 
-export default axiosInstance;
+export default axiosInstance
 
 // ----------------------------------------------------------------------
 
 export const fetcher = async (args: string | [string, AxiosRequestConfig]) => {
-  const [url, config] = Array.isArray(args) ? args : [args];
-  const res = await axiosInstance.get(url, { ...config });
+  const [url, config] = Array.isArray(args) ? args : [args]
+  const res = await axiosInstance.get(url, { ...config })
 
-  return res.data;
-};
+  return res.data
+}
 
 // ----------------------------------------------------------------------
 
-const VERSION_PREFIX = '/v1';
+const VERSION_PREFIX = '/v1'
 
 export const endpoints = {
   auth: {
@@ -100,4 +100,4 @@ export const endpoints = {
   comment: {
     get: `${VERSION_PREFIX}/comments`,
   },
-};
+}

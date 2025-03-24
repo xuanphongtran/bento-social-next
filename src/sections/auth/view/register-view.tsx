@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+'use client'
 
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import { useRouter } from 'next/navigation'
+import React from 'react'
 
-import { register } from '@/apis/auth';
-import { registerSchema } from '../data';
+import { register } from '@/apis/auth'
+import { registerSchema } from '../data'
 
-import { Button } from '@/components/button';
-import { GoogleSVG, LogoSVG } from '@/components/icons';
-import { DebouncedInput } from '@/components/input';
-import { Typography } from '@/components/typography';
+import { Button } from '@/components/button'
+import { GoogleSVG, LogoSVG } from '@/components/icons'
+import { DebouncedInput } from '@/components/input'
+import { Typography } from '@/components/typography'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -20,52 +20,52 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/alert-dialog';
+} from '@/components/alert-dialog'
 
-import styled from '@/styles/auth.module.css';
+import styled from '@/styles/auth.module.css'
 
 //----------------------------------------------------------------------
 
 export default function RegisterView() {
-  const router = useRouter();
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [firstNameError, setFirstNameError] = React.useState('');
-  const [lastNameError, setLastNameError] = React.useState('');
-  const [usernameError, setUsernameError] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+  const router = useRouter()
+  const [firstName, setFirstName] = React.useState('')
+  const [lastName, setLastName] = React.useState('')
+  const [username, setUsername] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [firstNameError, setFirstNameError] = React.useState('')
+  const [lastNameError, setLastNameError] = React.useState('')
+  const [usernameError, setUsernameError] = React.useState('')
+  const [passwordError, setPasswordError] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setFirstNameError('');
-    setLastNameError('');
-    setUsernameError('');
-    setPasswordError('');
+    e.preventDefault()
+    setLoading(true)
+    setFirstNameError('')
+    setLastNameError('')
+    setUsernameError('')
+    setPasswordError('')
 
     const result = registerSchema.safeParse({
       firstName,
       lastName,
       username,
       password,
-    });
+    })
     if (!result.success) {
       result.error.errors.forEach((error) => {
         if (error.path.includes('firstName')) {
-          setFirstNameError(error.message);
+          setFirstNameError(error.message)
         } else if (error.path.includes('lastName')) {
-          setLastNameError(error.message);
+          setLastNameError(error.message)
         } else if (error.path.includes('username')) {
-          setUsernameError(error.message);
+          setUsernameError(error.message)
         } else if (error.path.includes('password')) {
-          setPasswordError(error.message);
+          setPasswordError(error.message)
         }
-      });
-      setLoading(false);
-      return;
+      })
+      setLoading(false)
+      return
     }
 
     try {
@@ -74,21 +74,21 @@ export default function RegisterView() {
         lastName,
         username,
         password,
-      });
+      })
 
       if (userData) {
-        router.push('/login');
+        router.push('/login')
       }
     } catch (err: any) {
       if (err.response && err.response.data && err.response.data.message) {
-        setUsernameError(err.response.data.message);
+        setUsernameError(err.response.data.message)
       } else {
-        setUsernameError('An error occurred. Please try again.');
+        setUsernameError('An error occurred. Please try again.')
       }
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="bg-auth w-full h-svh flex flex-col justify-around items-center px-[2.5rem]">
@@ -214,5 +214,5 @@ export default function RegisterView() {
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -68,50 +68,50 @@
 //   return context;
 // }
 
-'use client';
+'use client'
 
-import React from 'react';
+import React from 'react'
 
-import { getUserProfile } from '@/apis/user';
-import { IUserProfile } from '@/interfaces/user';
+import { getUserProfile } from '@/apis/user'
+import { IUserProfile } from '@/interfaces/user'
 
 //-----------------------------------------------------------------------------------------------
 
 interface UserProfileContextType {
-  userProfile: IUserProfile | null;
-  setUserProfile: (profile: IUserProfile) => void;
-  loading: boolean;
-  error: Error | null;
-  refreshProfile: () => Promise<void>;
+  userProfile: IUserProfile | null
+  setUserProfile: (profile: IUserProfile) => void
+  loading: boolean
+  error: Error | null
+  refreshProfile: () => Promise<void>
 }
 
 const UserProfileContext = React.createContext<
   UserProfileContextType | undefined
->(undefined);
+>(undefined)
 
 export function ProfileProvider({ children }: { children: React.ReactNode }) {
   const [userProfile, setUserProfile] = React.useState<IUserProfile | null>(
     null
-  );
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState<Error | null>(null);
+  )
+  const [loading, setLoading] = React.useState(true)
+  const [error, setError] = React.useState<Error | null>(null)
 
   const fetchUserProfile = async () => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const res = await getUserProfile();
-      setUserProfile(res.data);
-      setError(null);
+      const res = await getUserProfile()
+      setUserProfile(res.data)
+      setError(null)
     } catch (err) {
-      setError(err as Error);
+      setError(err as Error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   React.useEffect(() => {
-    fetchUserProfile();
-  }, []);
+    fetchUserProfile()
+  }, [])
 
   return (
     <UserProfileContext.Provider
@@ -125,13 +125,13 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     >
       {children}
     </UserProfileContext.Provider>
-  );
+  )
 }
 
 export function useUserProfile() {
-  const context = React.useContext(UserProfileContext);
+  const context = React.useContext(UserProfileContext)
   if (context === undefined) {
-    throw new Error('useUserProfile must be used within a UserProfileProvider');
+    throw new Error('useUserProfile must be used within a UserProfileProvider')
   }
-  return context;
+  return context
 }

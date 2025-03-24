@@ -6,20 +6,18 @@ import {
   Sun,
   Sunrise,
   TextSize,
-} from '@/components/icons';
-import { Toggle } from '@/components/toggle';
-import { Typography } from '@/components/typography';
-import SettingCard from '../components/setting-card';
-import ThemeAutoBox from '../components/theme-auto-box';
-import ThemeDarkBox from '../components/theme-dark-box';
-import ThemeLightBox from '../components/theme-light-box';
-import ThemeSelectGroup, {
-  ThemeOption,
-} from '../components/theme-select-group';
+} from '@/components/icons'
+import { Toggle } from '@/components/toggle'
+import { Typography } from '@/components/typography'
+import SettingCard from '../components/setting-card'
+import ThemeAutoBox from '../components/theme-auto-box'
+import ThemeDarkBox from '../components/theme-dark-box'
+import ThemeLightBox from '../components/theme-light-box'
+import ThemeSelectGroup, { ThemeOption } from '../components/theme-select-group'
 
-import ColorToggleGroup from '../components/color-toggle-group';
-import TextSizeSlider from '../components/TextSizeSlider';
-import BrightnessSlider from '../components/BrightnessSlider';
+import ColorToggleGroup from '../components/color-toggle-group'
+import TextSizeSlider from '../components/TextSizeSlider'
+import BrightnessSlider from '../components/BrightnessSlider'
 export const PreferencesSection = () => {
   const accentColors = [
     {
@@ -42,7 +40,7 @@ export const PreferencesSection = () => {
       key: 'pink',
       value: '#F16D8D',
     },
-  ];
+  ]
 
   return (
     <section className="flex-1 flex flex-col h-full gap-3 overflow-auto no-scrollbar">
@@ -137,5 +135,5 @@ export const PreferencesSection = () => {
         </SettingCard.item>
       </SettingCard>
     </section>
-  );
-};
+  )
+}

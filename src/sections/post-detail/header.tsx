@@ -1,17 +1,17 @@
-'use client';
-import React from 'react';
-import { useRouter } from 'next/navigation';
+'use client'
+import React from 'react'
+import { useRouter } from 'next/navigation'
 
-import { Button } from '@/components/button';
-import { ArrowBackIcon, ExplandIcon } from '@/components/icons';
+import { Button } from '@/components/button'
+import { ArrowBackIcon, ExplandIcon } from '@/components/icons'
 
 //----------------------------------------------------------------------
 interface HeaderProps {
-  onViewFullPost: () => void;
+  onViewFullPost: () => void
 }
 
 export default function Header({ onViewFullPost }: HeaderProps) {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <div className="mb-3 flex justify-between items-center w-ful">
       <Button
@@ -28,5 +28,5 @@ export default function Header({ onViewFullPost }: HeaderProps) {
         onClick={onViewFullPost}
       />
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
 //--------------------------------------------------------------------------
 interface HeartProps {
-  isActive?: boolean;
+  isActive?: boolean
 }
 
 export default function Heart({ isActive }: HeartProps) {
@@ -23,5 +23,5 @@ export default function Heart({ isActive }: HeartProps) {
         />
       </g>
     </svg>
-  );
+  )
 }

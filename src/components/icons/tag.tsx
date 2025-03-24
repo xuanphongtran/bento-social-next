@@ -15,5 +15,5 @@ export default function Tag() {
         strokeLinecap="round"
       />
     </svg>
-  );
+  )
 }

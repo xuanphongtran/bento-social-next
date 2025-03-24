@@ -13,5 +13,5 @@ export default function Protection() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

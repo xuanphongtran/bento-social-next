@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+'use client'
 
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import { useRouter } from 'next/navigation'
+import React from 'react'
 
-import { login } from '@/apis/auth';
-import { useAuth } from '@/context/auth-context';
-import { loginSchema } from '../data';
+import { login } from '@/apis/auth'
+import { useAuth } from '@/context/auth-context'
+import { loginSchema } from '../data'
 
-import { Button } from '@/components/button';
-import { LogoSVG, GoogleSVG } from '@/components/icons';
-import { DebouncedInput } from '@/components/input';
-import { Typography } from '@/components/typography';
+import { Button } from '@/components/button'
+import { LogoSVG, GoogleSVG } from '@/components/icons'
+import { DebouncedInput } from '@/components/input'
+import { Typography } from '@/components/typography'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -21,57 +21,57 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/alert-dialog';
+} from '@/components/alert-dialog'
 
-import styled from '@/styles/auth.module.css';
+import styled from '@/styles/auth.module.css'
 
 //----------------------------------------------------------------------
 
 export default function LoginView() {
-  const { setToken } = useAuth();
-  const router = useRouter();
-  const [username, setUsername] = React.useState('Guest');
-  const [password, setPassword] = React.useState('123456');
-  const [usernameError, setUsernameError] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+  const { setToken } = useAuth()
+  const router = useRouter()
+  const [username, setUsername] = React.useState('Guest')
+  const [password, setPassword] = React.useState('123456')
+  const [usernameError, setUsernameError] = React.useState('')
+  const [passwordError, setPasswordError] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setUsernameError('');
-    setPasswordError('');
+    e.preventDefault()
+    setLoading(true)
+    setUsernameError('')
+    setPasswordError('')
 
-    const result = loginSchema.safeParse({ username, password });
+    const result = loginSchema.safeParse({ username, password })
     if (!result.success) {
       result.error.errors.forEach((error) => {
         if (error.path.includes('username')) {
-          setUsernameError(error.message);
+          setUsernameError(error.message)
         } else if (error.path.includes('password')) {
-          setPasswordError(error.message);
+          setPasswordError(error.message)
         }
-      });
-      setLoading(false);
-      return;
+      })
+      setLoading(false)
+      return
     }
 
     try {
-      const token = await login({ username, password });
+      const token = await login({ username, password })
 
       if (token && token.data) {
-        setToken(token.data);
-        router.push('/');
+        setToken(token.data)
+        router.push('/')
       }
     } catch (err: any) {
       if (err.response && err.response.data && err.response.data.message) {
-        setUsernameError(err.response.data.message);
+        setUsernameError(err.response.data.message)
       } else {
-        setUsernameError('An error occurred. Please try again.');
+        setUsernameError('An error occurred. Please try again.')
       }
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <>
@@ -177,5 +177,5 @@ export default function LoginView() {
         </div>
       </div>
     </>
-  );
+  )
 }

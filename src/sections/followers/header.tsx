@@ -1,13 +1,13 @@
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'
 
-import { Button } from '@/components/button';
-import { ArrowBackIcon } from '@/components/icons';
-import { Typography } from '@/components/typography';
+import { Button } from '@/components/button'
+import { ArrowBackIcon } from '@/components/icons'
+import { Typography } from '@/components/typography'
 
 //-------------------------------------------------------------------------
 
 export default function HeaderFollowers() {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <section className="mt-[3rem] md:mt-0 mb-3 flex gap-5 items-center">
       <Button
@@ -20,5 +20,5 @@ export default function HeaderFollowers() {
         200Lab
       </Typography>
     </section>
-  );
+  )
 }

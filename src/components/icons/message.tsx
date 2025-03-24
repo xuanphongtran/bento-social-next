@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 export default function MessageIcon({ className }: { className?: string }) {
   return (
@@ -18,5 +18,5 @@ export default function MessageIcon({ className }: { className?: string }) {
         />
       </g>
     </svg>
-  );
+  )
 }

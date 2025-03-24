@@ -1,4 +1,4 @@
-import { Icon } from '@/interfaces/icon';
+import { Icon } from '@/interfaces/icon'
 
 //--------------------------------------------------------------------------
 export default function Share({ ...props }: Icon) {
@@ -21,5 +21,5 @@ export default function Share({ ...props }: Icon) {
         />
       </g>
     </svg>
-  );
+  )
 }

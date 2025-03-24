@@ -1,10 +1,10 @@
-import * as React from 'react';
-import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
+import * as React from 'react'
+import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
-import AlertDialogPortal from './alert-dialog-portal';
-import AlertDialogOverlay from './alert-dialog-overlay';
+import AlertDialogPortal from './alert-dialog-portal'
+import AlertDialogOverlay from './alert-dialog-overlay'
 
 // ----------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ const AlertDialogContent = React.forwardRef<
       {...props}
     />
   </AlertDialogPortal>
-));
-AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;
+))
+AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName
 
-export default AlertDialogContent;
+export default AlertDialogContent

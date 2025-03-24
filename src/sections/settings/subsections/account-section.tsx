@@ -1,8 +1,8 @@
 // import Image from 'next/image';
-import React from 'react';
+import React from 'react'
 
-import { updateUserProfile } from '@/apis/user';
-import { useUserProfile } from '@/context/user-context';
+import { updateUserProfile } from '@/apis/user'
+import { useUserProfile } from '@/context/user-context'
 
 import {
   AlertDialog,
@@ -14,7 +14,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/alert-dialog';
+} from '@/components/alert-dialog'
 import {
   EmailIcon,
   LockIcon,
@@ -22,41 +22,41 @@ import {
   QRCodeIcon,
   TrashIcon,
   TunerIcon,
-} from '@/components/icons';
-import Bubble from '@/components/icons/bubble';
-import Bubbles1 from '@/components/icons/bubbles1';
-import Bubbles2 from '@/components/icons/bubbles2';
-import Ring1 from '@/components/icons/ring1';
-import Ring2 from '@/components/icons/ring2';
-import Ring3 from '@/components/icons/ring3';
-import { Typography } from '@/components/typography';
+} from '@/components/icons'
+import Bubble from '@/components/icons/bubble'
+import Bubbles1 from '@/components/icons/bubbles1'
+import Bubbles2 from '@/components/icons/bubbles2'
+import Ring1 from '@/components/icons/ring1'
+import Ring2 from '@/components/icons/ring2'
+import Ring3 from '@/components/icons/ring3'
+import { Typography } from '@/components/typography'
 
-import SettingCard from '../components/setting-card';
+import SettingCard from '../components/setting-card'
 
-import { USER_AVATAR_PLACEHOLDER } from '@/constant/contants';
-import { Avatar } from '@/components/avatar';
+import { USER_AVATAR_PLACEHOLDER } from '@/constant/contants'
+import { Avatar } from '@/components/avatar'
 
 //-----------------------------------------------------------------------------------------------
 
 export const AccountsSection = () => {
-  const { userProfile } = useUserProfile();
-  const [password, setPassword] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+  const { userProfile } = useUserProfile()
+  const [password, setPassword] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
 
   const handleSavePassword = async () => {
-    if (!password) return;
+    if (!password) return
 
-    setLoading(true);
+    setLoading(true)
     try {
-      await updateUserProfile({ password });
-      setPassword('');
+      await updateUserProfile({ password })
+      setPassword('')
     } catch (error) {
-      console.error('Failed to update password', error);
-      alert('Failed to update password');
+      console.error('Failed to update password', error)
+      alert('Failed to update password')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
   return (
     <section className="flex-1 flex flex-col h-full gap-3 overflow-auto no-scrollbar">
       <SettingCard className="p-8 gap-7 flex flex-col h-[256px]  items-center justify-center">
@@ -228,5 +228,5 @@ export const AccountsSection = () => {
         </div>
       </SettingCard>
     </section>
-  );
-};
+  )
+}

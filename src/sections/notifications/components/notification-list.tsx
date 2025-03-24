@@ -1,9 +1,9 @@
-import { NotificationItem } from './notification-list-item';
-import { INotification } from '@/interfaces/notification';
+import { NotificationItem } from './notification-list-item'
+import { INotification } from '@/interfaces/notification'
 
 interface NotificationListProps {
-  notifications: INotification[];
-  onReadSingle: (id: string) => void;
+  notifications: INotification[]
+  onReadSingle: (id: string) => void
 }
 
 export const NotificationList: React.FC<NotificationListProps> = ({
@@ -20,5 +20,5 @@ export const NotificationList: React.FC<NotificationListProps> = ({
         />
       ))}
     </ul>
-  );
-};
+  )
+}

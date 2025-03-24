@@ -18,5 +18,5 @@ export default function Folder() {
         />
       </g>
     </svg>
-  );
+  )
 }

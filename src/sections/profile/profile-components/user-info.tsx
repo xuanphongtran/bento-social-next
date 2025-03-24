@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import { useUserProfile } from '@/context/user-context';
-import { IUserProfile } from '@/interfaces/user';
+import { useUserProfile } from '@/context/user-context'
+import { IUserProfile } from '@/interfaces/user'
 
-import AvatarProfile from '@/components/avatar/avatar-profile';
-import { Button } from '@/components/button';
+import AvatarProfile from '@/components/avatar/avatar-profile'
+import { Button } from '@/components/button'
 import {
   CheckIcon,
   CommentIcon,
@@ -16,52 +16,52 @@ import {
   LinkIcon,
   ProfileIcon,
   ShareIcon,
-} from '@/components/icons';
-import { SplashScreen } from '@/components/loading-screen';
-import { Typography } from '@/components/typography';
+} from '@/components/icons'
+import { SplashScreen } from '@/components/loading-screen'
+import { Typography } from '@/components/typography'
 
-import { USER_AVATAR_PLACEHOLDER } from '@/constant';
-import { followUser, hasFollowed, unfollowUser } from '@/apis/user';
+import { USER_AVATAR_PLACEHOLDER } from '@/constant'
+import { followUser, hasFollowed, unfollowUser } from '@/apis/user'
 
 //-------------------------------------------------------------------------
 
 interface UserInfoProps {
-  user: IUserProfile;
+  user: IUserProfile
 }
 
 export default function InfoUser({ user }: UserInfoProps) {
-  const { userProfile, loading } = useUserProfile();
-  const [isFollowed, setIsFollowed] = React.useState<boolean>(false);
-  const [isCopied, setIsCopied] = React.useState<boolean>(false);
+  const { userProfile, loading } = useUserProfile()
+  const [isFollowed, setIsFollowed] = React.useState<boolean>(false)
+  const [isCopied, setIsCopied] = React.useState<boolean>(false)
 
   React.useEffect(() => {
-    (async () => {
-      setIsFollowed(await hasFollowed(user.id));
-    })();
-  }, [user]);
+    ;(async () => {
+      setIsFollowed(await hasFollowed(user.id))
+    })()
+  }, [user])
 
   const handleFollow = () => {
     if (isFollowed) {
-      unfollowUser(user.id);
-      setIsFollowed(false);
+      unfollowUser(user.id)
+      setIsFollowed(false)
     } else {
-      followUser(user.id);
-      setIsFollowed(true);
+      followUser(user.id)
+      setIsFollowed(true)
     }
-  };
+  }
 
   const handleShare = async () => {
-    const profileUrl = `${window.location.origin}/profile/${user.id}`;
+    const profileUrl = `${window.location.origin}/profile/${user.id}`
     try {
-      await navigator.clipboard.writeText(profileUrl);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
+      await navigator.clipboard.writeText(profileUrl)
+      setIsCopied(true)
+      setTimeout(() => setIsCopied(false), 2000)
     } catch (err) {
-      console.error('Failed to copy URL:', err);
+      console.error('Failed to copy URL:', err)
     }
-  };
+  }
 
-  if (loading) return <SplashScreen />;
+  if (loading) return <SplashScreen />
 
   return (
     <>
@@ -181,5 +181,5 @@ export default function InfoUser({ user }: UserInfoProps) {
         </div>
       </div>
     </>
-  );
+  )
 }

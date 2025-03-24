@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 export default function SettingSlider({ className }: { className?: string }) {
   return (
@@ -19,5 +19,5 @@ export default function SettingSlider({ className }: { className?: string }) {
         />
       </g>
     </svg>
-  );
+  )
 }

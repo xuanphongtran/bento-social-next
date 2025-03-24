@@ -1,27 +1,27 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import React from 'react'
+import { useRouter } from 'next/navigation'
 
-import { useAuth } from '@/context/auth-context';
+import { useAuth } from '@/context/auth-context'
 
 //-----------------------------------------------------------------------------------------------
 
 interface ProtectedRouteProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  const router = useRouter();
+  const { isAuthenticated } = useAuth()
+  const router = useRouter()
 
   React.useEffect(() => {
     if (!isAuthenticated) {
-      router.replace('/login');
+      router.replace('/login')
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, router])
 
-  return <>{children}</>;
-};
+  return <>{children}</>
+}
 
-export default ProtectedRoute;
+export default ProtectedRoute

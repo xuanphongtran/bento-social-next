@@ -17,5 +17,5 @@ export default function CloseIcon() {
         />
       </g>
     </svg>
-  );
+  )
 }

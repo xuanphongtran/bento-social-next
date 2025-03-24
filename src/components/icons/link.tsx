@@ -15,5 +15,5 @@ export default function Link() {
         strokeLinecap="round"
       />
     </svg>
-  );
+  )
 }

@@ -5,22 +5,22 @@ export enum IAction {
 }
 
 interface ISender {
-  id: string;
-  username: string;
-  firstName: string;
-  lastName: string;
-  avatar: string | null;
+  id: string
+  username: string
+  firstName: string
+  lastName: string
+  avatar: string | null
 }
 
 export interface INotification {
-  id: string;
-  receiverId: string;
-  actorId: string;
-  content: string;
-  action: IAction;
-  isSent: boolean;
-  isRead: boolean;
-  createdAt: string;
-  updatedAt: string;
-  sender: ISender;
+  id: string
+  receiverId: string
+  actorId: string
+  content: string
+  action: IAction
+  isSent: boolean
+  isRead: boolean
+  createdAt: string
+  updatedAt: string
+  sender: ISender
 }

@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
 import {
   deletePost,
@@ -10,22 +10,22 @@ import {
   savePost,
   unlikePost,
   unsavePost,
-} from '@/apis/post';
-import { IChilrenComment, ICommment } from '@/interfaces/comment';
-import { IPost } from '@/interfaces/post';
-import { IUserProfile } from '@/interfaces/user';
-import { useUserProfile } from '@/context/user-context';
+} from '@/apis/post'
+import { IChilrenComment, ICommment } from '@/interfaces/comment'
+import { IPost } from '@/interfaces/post'
+import { IUserProfile } from '@/interfaces/user'
+import { useUserProfile } from '@/context/user-context'
 
-import { cn } from '@/lib/utils';
-import { relativeTime } from '@/utils/relative-time';
+import { cn } from '@/lib/utils'
+import { relativeTime } from '@/utils/relative-time'
 
-import { Avatar } from '../avatar';
-import { BookmarkIcon, CommentIcon, HeartIcon, MoreIcon } from '../icons';
-import UpdatePost from '../new-post/update-post';
-import { Portal } from '../portal';
-import { Typography } from '../typography';
-import { MoreOptions } from './components/more-options';
-import { ReactItem } from './react-item';
+import { Avatar } from '../avatar'
+import { BookmarkIcon, CommentIcon, HeartIcon, MoreIcon } from '../icons'
+import UpdatePost from '../new-post/update-post'
+import { Portal } from '../portal'
+import { Typography } from '../typography'
+import { MoreOptions } from './components/more-options'
+import { ReactItem } from './react-item'
 import {
   AlertDialog,
   AlertDialogContent,
@@ -33,20 +33,20 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogDescription,
-} from '../alert-dialog';
-import { Button } from '../button';
+} from '../alert-dialog'
+import { Button } from '../button'
 
 //-------------------------------------------------------------------------
 
 interface PostProps {
-  data: IPost | ICommment | IChilrenComment;
-  className?: string;
-  onUpdatePost?: (updatedPost: IPost) => void;
-  setParentComment?: (parentComment: { id: string; fullname: string }) => void;
-  onDeleteSuccess?: (isDeleted: boolean) => void;
-  type?: string;
-  openMoreOptionsId?: string | null;
-  setOpenMoreOptionsId?: (id: string | null) => void;
+  data: IPost | ICommment | IChilrenComment
+  className?: string
+  onUpdatePost?: (updatedPost: IPost) => void
+  setParentComment?: (parentComment: { id: string; fullname: string }) => void
+  onDeleteSuccess?: (isDeleted: boolean) => void
+  type?: string
+  openMoreOptionsId?: string | null
+  setOpenMoreOptionsId?: (id: string | null) => void
 }
 
 export default function Post({
@@ -58,122 +58,122 @@ export default function Post({
   openMoreOptionsId,
   setOpenMoreOptionsId,
 }: PostProps) {
-  const { userProfile } = useUserProfile();
-  const [localData, setLocalData] = React.useState(data);
-  const [isEdit, setIsEdit] = React.useState<boolean>(false);
-  const [isConfirm, setIsConfirm] = React.useState<boolean>(false);
+  const { userProfile } = useUserProfile()
+  const [localData, setLocalData] = React.useState(data)
+  const [isEdit, setIsEdit] = React.useState<boolean>(false)
+  const [isConfirm, setIsConfirm] = React.useState<boolean>(false)
 
-  const isPostType = 'isFeatured' in data || 'hasSaved' in data;
+  const isPostType = 'isFeatured' in data || 'hasSaved' in data
 
   const handleLikeClick = async () => {
-    if (!isPostType) return;
+    if (!isPostType) return
 
     const newLikedCount =
-      localData.likedCount + ((localData as IPost).hasLiked ? -1 : 1);
+      localData.likedCount + ((localData as IPost).hasLiked ? -1 : 1)
     const updatedData = {
       ...localData,
       hasLiked: !(localData as IPost).hasLiked,
       likedCount: newLikedCount,
-    } as IPost;
+    } as IPost
 
-    setLocalData(updatedData);
+    setLocalData(updatedData)
     if (onUpdatePost) {
-      onUpdatePost(updatedData);
+      onUpdatePost(updatedData)
     }
 
     try {
       if ((localData as IPost).hasLiked) {
-        await unlikePost(localData.id);
+        await unlikePost(localData.id)
       } else {
-        await likePost(localData.id);
+        await likePost(localData.id)
       }
     } catch (error) {
-      console.error('Failed to update like status:', error);
-      setLocalData(localData);
+      console.error('Failed to update like status:', error)
+      setLocalData(localData)
       if (onUpdatePost) {
-        onUpdatePost(localData as IPost);
+        onUpdatePost(localData as IPost)
       }
     }
-  };
+  }
 
   const handleMoreOptions = () => {
-    setOpenMoreOptionsId?.(openMoreOptionsId === data.id ? null : data.id);
-  };
+    setOpenMoreOptionsId?.(openMoreOptionsId === data.id ? null : data.id)
+  }
 
   const handleBookmarkClick = async () => {
-    if (!isPostType) return;
+    if (!isPostType) return
 
     const updatedData = {
       ...localData,
       hasSaved: !(localData as IPost).hasSaved,
-    } as IPost;
+    } as IPost
 
-    setLocalData(updatedData);
+    setLocalData(updatedData)
     if (onUpdatePost) {
-      onUpdatePost(updatedData);
+      onUpdatePost(updatedData)
     }
 
     try {
       if ((localData as IPost).hasSaved) {
-        await unsavePost(localData.id);
+        await unsavePost(localData.id)
       } else {
-        await savePost(localData.id);
+        await savePost(localData.id)
       }
     } catch (error) {
-      console.error('Failed to update bookmark status:', error);
-      setLocalData(localData);
+      console.error('Failed to update bookmark status:', error)
+      setLocalData(localData)
       if (onUpdatePost) {
-        onUpdatePost(localData as IPost);
+        onUpdatePost(localData as IPost)
       }
     }
-  };
+  }
 
   const handleReplyComment = () => {
-    if (isPostType) return;
+    if (isPostType) return
     setParentComment?.({
       id: data.id,
       fullname: `${data.author.firstName} ${data.author.lastName}`,
-    });
-  };
+    })
+  }
 
   const handleUpdatePost = (updatedPost: IPost) => {
-    setLocalData(updatedPost);
-    onUpdatePost?.(updatedPost);
-    setIsEdit(false);
-    handleMoreOptions();
-  };
+    setLocalData(updatedPost)
+    onUpdatePost?.(updatedPost)
+    setIsEdit(false)
+    handleMoreOptions()
+  }
 
   const handleDeletePost = async () => {
     try {
-      await deletePost(data.id);
-      onDeleteSuccess?.(true);
+      await deletePost(data.id)
+      onDeleteSuccess?.(true)
     } catch (error) {
-      console.error('Failed to delete post:', error);
+      console.error('Failed to delete post:', error)
     }
-    setIsConfirm(false);
-  };
+    setIsConfirm(false)
+  }
 
   const handleConfirmDelete = () => {
-    setIsConfirm(true);
-  };
+    setIsConfirm(true)
+  }
 
   const handleCancelDelete = () => {
-    setIsConfirm(false);
-  };
+    setIsConfirm(false)
+  }
 
   React.useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isEdit) {
-        setIsEdit(false);
+        setIsEdit(false)
       }
-    };
+    }
 
-    document.addEventListener('keydown', handleEsc);
+    document.addEventListener('keydown', handleEsc)
 
     return () => {
-      document.removeEventListener('keydown', handleEsc);
-    };
-  }, [isEdit]);
+      document.removeEventListener('keydown', handleEsc)
+    }
+  }, [isEdit])
 
   return (
     <div
@@ -324,5 +324,5 @@ export default function Post({
         </AlertDialogContent>
       </AlertDialog>
     </div>
-  );
+  )
 }
